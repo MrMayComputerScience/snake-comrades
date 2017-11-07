@@ -80,7 +80,7 @@ public class Snake extends Actor{
             snakeLocationX[i] = snakeLocationX[i+1];
             //replaces every y value except the last with its superior.
             snakeLocationY[i] = snakeLocationY[i+1];
-            snakeParts[i].setX
+            
         }
 
 
