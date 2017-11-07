@@ -15,13 +15,16 @@ public class Snake extends Actor{
     public boolean currentlyCopied = false;
 
 
-
-
     Snake(int x, int y){
         snakeParts[0] = new SnakePart();
         snakeLocationX[0] = x;
         snakeLocationY[0] = y;
     }
+
+    public act(){
+
+    }
+
 
     public void increaseSnakeSize(){
         int copyX = snakeLocationX[snakeLocationX.length -1];
@@ -31,6 +34,7 @@ public class Snake extends Actor{
 
         snakeLocationX[snakeLocationX.length] = copyX;
         snakeLocationY[snakeLocationY.length] = copyY;
+        currentlyCopied = true;
 
     }
 
@@ -76,6 +80,7 @@ public class Snake extends Actor{
             snakeLocationX[i] = snakeLocationX[i+1];
             //replaces every y value except the last with its superior.
             snakeLocationY[i] = snakeLocationY[i+1];
+            snakeParts[i].setX
         }
 
 
