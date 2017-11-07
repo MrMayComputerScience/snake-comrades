@@ -1,4 +1,6 @@
-public class SnakeDataStructure {
+import mayflower.*;
+
+public class Snake extends Actor{
 
 
     public int[] snakeLocationX;
