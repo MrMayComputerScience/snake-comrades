@@ -21,6 +21,7 @@ public class SnakeDataStructure {
 
     }
 
+    //Given a direction (N, E, S, W), this method moves the snake depending on if another snake unit was added.
     public void move(String direction){
 
         //Condition for if the snake has just been copied.
@@ -35,10 +36,9 @@ public class SnakeDataStructure {
                 snakeLocationY[snakeLocationY.length - 1] = (snakeLocationY[snakeLocationY.length - 1] +20);
             }
             else if(direction == "W"){
+                snakeLocationX[snakeLocationX.length - 1] = (snakeLocationX[snakeLocationX.length - 1] -20);
             }
-            snakeLocationX[snakeLocationX.length - 1] = (snakeLocationX[snakeLocationX.length - 1] -20);
-
-
+         currentlyCopied = false;
         }
         //A regular move.
         else{
@@ -55,12 +55,14 @@ public class SnakeDataStructure {
             }
             snakeLocationX[snakeLocationX.length - 1] = (snakeLocationX[snakeLocationX.length - 1] -20);
 
-            for(int i = 0; i < snakeLocationX.length -1; i++){
-                //replaces every x value except the last with its superior.
-                snakeLocationX[i] = snakeLocationX[i+1];
-                //replaces every y value except the last with its superior.
-                snakeLocationY[i] = snakeLocationY[i+1];
-            }
+
+        }
+        //Uses the length of X because both arrays should be the same length.
+        for(int i = 0; i < snakeLocationX.length -1; i++){
+            //replaces every x value except the last with its superior.
+            snakeLocationX[i] = snakeLocationX[i+1];
+            //replaces every y value except the last with its superior.
+            snakeLocationY[i] = snakeLocationY[i+1];
         }
 
 
