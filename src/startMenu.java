@@ -37,8 +37,8 @@ private int score;
     {
     	if(Mayflower.mouseClicked(p))
     	{
-    		//DifficultyMenu nextWorld = new DifficultyMenu(s);
-    		//Mayflower.setWorld(nextWorld);
+    		GameStage nextWorld = new GameStage(s);
+    		Mayflower.setWorld(nextWorld);
     	}
     }
 }
