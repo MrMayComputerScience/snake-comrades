@@ -1,4 +1,6 @@
-public class SnakeDataStructure {
+import mayflower.*;
+
+public class Snake extends Actor{
 
 
     public int[] snakeLocationX;
@@ -7,7 +9,7 @@ public class SnakeDataStructure {
     //tells whether a copy just occurred for the snake.
     public boolean currentlyCopied = false;
 
-    SnakeDataStructure(int x, int y){
+    Snake(int x, int y){
         snakeLocationX[0] = x;
         snakeLocationY[0] = y;
     }
