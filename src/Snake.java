@@ -3,13 +3,22 @@ import mayflower.*;
 public class Snake extends Actor{
 
 
+    //Array of SnakeActors
+    public Actor[] snakeParts;
+
+
+
     public int[] snakeLocationX;
     public int[] snakeLocationY;
 
     //tells whether a copy just occurred for the snake.
     public boolean currentlyCopied = false;
 
+
+
+
     Snake(int x, int y){
+        snakeParts[0] = new SnakePart();
         snakeLocationX[0] = x;
         snakeLocationY[0] = y;
     }
@@ -17,6 +26,8 @@ public class Snake extends Actor{
     public void increaseSnakeSize(){
         int copyX = snakeLocationX[snakeLocationX.length -1];
         int copyY = snakeLocationY[snakeLocationY.length -1];
+
+        snakeParts[snakeLocationX.length] = new SnakePart();
 
         snakeLocationX[snakeLocationX.length] = copyX;
         snakeLocationY[snakeLocationY.length] = copyY;
