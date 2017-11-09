@@ -3,12 +3,16 @@ package game;
 import java.security.Key;
 import java.util.Random;
 import mayflower.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameStage extends World
 {
 	private ScoreBoard scoreBoard;
 	private Snake player;
 	private Random rand;
+	private Timer t;
+	private String direction = "";
 
     public GameStage(ScoreBoard scoreBoard)
     {
@@ -18,21 +22,35 @@ public class GameStage extends World
 		rand = new Random();
 		player = new Snake(100,100, this);
 		addObject(player,100,100);
+
+		t = new Timer();
+		t.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				tick();
+			}
+		}, 75, 75);
     }
-    
-    @Override
-    public void act()
+
+    public void tick()
     {
+    	if(!direction.equals("")) {
+			player.move(direction);
+		}
+    }
+
+	@Override
+	public void act() {
 		if(Mayflower.isKeyPressed(Keyboard.KEY_W)) {
-			player.move("N");
+			direction = ("N");
 		} else if(Mayflower.isKeyPressed(Keyboard.KEY_A)) {
-			player.move("W");
+			direction = ("W");
 		} else if(Mayflower.isKeyPressed(Keyboard.KEY_S)) {
-			player.move("S");
+			direction = ("S");
 		} else if(Mayflower.isKeyPressed(Keyboard.KEY_D)) {
-			player.move("E");
+			direction = ("E");
 		} else if(Mayflower.isKeyPressed(Keyboard.KEY_GRAVE)) {
 			player.increaseSnakeSize();
 		}
-    }
+	}
 }
