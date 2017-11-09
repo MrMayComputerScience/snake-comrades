@@ -1,4 +1,4 @@
-/**
+package game; /**
  * @(#)PlayButton.java
  *
  *
@@ -7,6 +7,7 @@
  */
 
 import mayflower.*;
+
 public class PlayButton extends Actor
 {
     public PlayButton() 

@@ -1,16 +1,19 @@
+package game;
+
 import mayflower.*;
+
 public class Main extends Mayflower
 {
-    //Construct a Mayflower Window.
-    public Main()
+    private Main()
     {
-        super("Final Project", 800, 600);
+        super("Snake", 800, 600);
     }
+
     @Override
     public void init()
     {
         Mayflower.setFullScreen(false);
-        World startingWorld = new startMenu();
+        World startingWorld = new StartMenu();
         Mayflower.setWorld(startingWorld);
     }
 

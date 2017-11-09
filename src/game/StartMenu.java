@@ -1,4 +1,4 @@
-/**
+package game; /**
  * @(#)startMenu.java
  *
  *
@@ -7,12 +7,14 @@
  */
 
 import mayflower.*;
-public class startMenu extends World
+
+public class StartMenu extends World
 {
-private PlayButton p;
-private ScoreBoard s;
-private int score;
-    public startMenu() 
+	private PlayButton p;
+	private ScoreBoard s;
+	private int score;
+
+    public StartMenu()
     {
     	score = 0;
     	setBackground("img/Background.jpg");
@@ -21,7 +23,8 @@ private int score;
 		s = new ScoreBoard();
     	addObject(s, 50,50);
     }
-    public startMenu(ScoreBoard a)
+
+    public StartMenu(ScoreBoard a)
     {
     	score = 0;
     	setBackground("img/Background.jpg");
@@ -29,9 +32,8 @@ private int score;
     	addObject(p, 333, 311);
     	s = a;
     	addObject(s, 50,50);
-    	
-    		
     }
+
     @Override
     public void act()
     {

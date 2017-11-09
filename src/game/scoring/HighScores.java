@@ -1,4 +1,4 @@
-package scoring;
+package game.scoring;
 
 import lombok.Getter;
 
