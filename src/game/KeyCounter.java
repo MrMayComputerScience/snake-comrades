@@ -7,7 +7,7 @@ public class KeyCounter extends Actor
     public KeyCounter()
     {
         keys = 0;
-        setImage(new MayflowerImage("Score: " + keys, 16, new Color(0,255,0)));
+        setImage(new MayflowerImage("Keys: " + keys, 16, new Color(0,255,0)));
     }
 
     public void plusScore()
@@ -24,6 +24,6 @@ public class KeyCounter extends Actor
     @Override
     public void act()
     {
-        setImage(new MayflowerImage("Score: " + keys, 16, new Color(0,255,0)));
+        setImage(new MayflowerImage("Keys: " + keys, 16, new Color(0,255,0)));
     }
 }
