@@ -37,7 +37,16 @@ public class GameStage extends World
 
 		k=j;
 		addObject(k,50,65);
-    }
+
+		//Spawn in walls
+		for (int i = 0; i < 30; i++) {
+			for (int k = 0; k < 40; k++) {
+				if(i == 0 || i == 29 || k == 0 || k == 39) {
+					addObject(new Wall(), k*20, i*20);
+				}
+			}
+		}
+	}
 
     public void tick()
     {
