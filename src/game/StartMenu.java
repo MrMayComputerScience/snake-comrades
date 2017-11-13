@@ -38,11 +38,9 @@ public class StartMenu extends World
 
     public StartMenu(ScoreBoard a, KeyCounter j)
     {
-
-
-    	setBackground("img/titlescreen_minecraft.png");
+    	this();
     	s = a;
-    	k=j;
+    	k = j;
 		score = a.getScore();
     	addObject(s, 50,50);
     	addObject(k,50,65);
