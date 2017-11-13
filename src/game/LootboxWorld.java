@@ -8,7 +8,7 @@ public class LootboxWorld  extends World
     private PlayButton oof;
     private KeyCounter k;
     private int score;
-    public LootboxWorld(ScoreBoard a)
+    public LootboxWorld(ScoreBoard a, KeyCounter j)
     {
         setBackground("img/Background.jpg");
         p = new PlayButton();
@@ -21,7 +21,7 @@ public class LootboxWorld  extends World
         s = a;
         score = s.getScore();
         addObject(s, 50,50);
-        k = new KeyCounter();
+        k=j;
         addObject(k, 50,65);
         addObject(oof,100,100);
         addObject(b,171,293);
