@@ -6,7 +6,7 @@ public class SnakePart extends Actor
 {
     public SnakePart()
     {
-        setImage("img/snake.png");
+        setImage("img/snakePhoto.png");
     }
 
     public void move(int x, int y) {
