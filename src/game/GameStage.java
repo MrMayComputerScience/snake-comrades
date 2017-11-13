@@ -16,9 +16,8 @@ public class GameStage extends World
 	Collectable startingCollectable;
 	private KeyCounter k;
 
-    public GameStage(ScoreBoard scoreBoard,KeyCounter j)
+    public GameStage(ScoreBoard scoreBoard, KeyCounter j)
     {
-
     	setBackground("img/blue.png");
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
@@ -28,7 +27,6 @@ public class GameStage extends World
 		addObject(player,100,100);
 
 		//Adding collectable
-
 		addObject(startingCollectable,120,120);
 		t = new Timer();
 		t.schedule(new TimerTask() {
@@ -63,13 +61,13 @@ public class GameStage extends World
 
 	@Override
 	public void act() {
-		if(Mayflower.isKeyPressed(Keyboard.KEY_W)) {
+		if(Mayflower.isKeyPressed(Keyboard.KEY_W) && !direction.equals("S")) {
 			direction = ("N");
-		} else if(Mayflower.isKeyPressed(Keyboard.KEY_A)) {
+		} else if(Mayflower.isKeyPressed(Keyboard.KEY_A) && !direction.equals("E")) {
 			direction = ("W");
-		} else if(Mayflower.isKeyPressed(Keyboard.KEY_S)) {
+		} else if(Mayflower.isKeyPressed(Keyboard.KEY_S) && !direction.equals("N")) {
 			direction = ("S");
-		} else if(Mayflower.isKeyPressed(Keyboard.KEY_D)) {
+		} else if(Mayflower.isKeyPressed(Keyboard.KEY_D) && !direction.equals("W")) {
 			direction = ("E");
 		} else if(Mayflower.isKeyPressed(Keyboard.KEY_GRAVE)) {
 			player.increaseSnakeSize();
