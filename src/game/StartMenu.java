@@ -44,7 +44,7 @@ public class StartMenu extends World
 	{
 		this();
     	s = a;
-    	k=j;
+    	k = j;
 		score = a.getScore();
 		keys = k.getScore();
     	addObject(s, 50,50);
