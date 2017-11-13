@@ -13,8 +13,9 @@ public class GameStage extends World
 	private Random rand;
 	private Timer t;
 	private String direction = "";
+	private KeyCounter k;
 
-    public GameStage(ScoreBoard scoreBoard)
+    public GameStage(ScoreBoard scoreBoard,KeyCounter j)
     {
     	setBackground("img/blue.png");
     	this.scoreBoard = scoreBoard;
@@ -33,6 +34,9 @@ public class GameStage extends World
 				tick();
 			}
 		}, 75, 75);
+
+		k=j;
+		addObject(k,50,65);
     }
 
     public void tick()
