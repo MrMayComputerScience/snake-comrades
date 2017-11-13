@@ -5,7 +5,7 @@ import mayflower.Actor;
 
 public class Collectable extends Actor{
 
-    public Collectable(){setImage("img/collectable.png");}
+    public Collectable(){setImage("img/shekle.png");}
 
     public void Contact(){
 

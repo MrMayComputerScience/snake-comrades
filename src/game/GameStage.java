@@ -23,6 +23,9 @@ public class GameStage extends World
 		player = new Snake(100,100, this);
 		addObject(player,100,100);
 
+		//Adding collectable
+		Collectable startingCollectable = new Collectable();
+		addObject(startingCollectable,120,120);
 		t = new Timer();
 		t.schedule(new TimerTask() {
 			@Override

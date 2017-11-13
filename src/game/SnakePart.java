@@ -4,9 +4,11 @@ import mayflower.*;
 
 public class SnakePart extends Actor
 {
-    public SnakePart()
+    boolean isFront = false;
+    public SnakePart(boolean head)
     {
         setImage("img/snakePhoto.png");
+        isFront = head;
     }
 
     public void move(int x, int y) {
@@ -16,6 +18,17 @@ public class SnakePart extends Actor
     @Override
     public void act()
     {
+        if(isFront) {
+            if (this.isTouching(Collectable.class)) {
+
+                //commented out so I can 
+                //increaseSnakeSizeCall();
+            }
+        }
+    }
+
+
+    public void increaseSnakeSizeCall(){
 
     }
 }
