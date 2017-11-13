@@ -34,7 +34,7 @@ public class Snake extends Actor {
 
     @Override
     public void act() {
-        if (this.isTouching(Collectable)){
+        if (this.isTouching(Collectable.class)){
             increaseSnakeSize();
         }
     }
