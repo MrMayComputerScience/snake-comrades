@@ -13,18 +13,21 @@ public class GameStage extends World
 	private Random rand;
 	private Timer t;
 	private String direction = "";
+	Collectable startingCollectable;
 
     public GameStage(ScoreBoard scoreBoard)
     {
+
     	setBackground("img/blue.png");
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 		player = new Snake(100,100, this);
+		startingCollectable	= new Collectable(player);
 		addObject(player,100,100);
 
 		//Adding collectable
-		Collectable startingCollectable = new Collectable();
+
 		addObject(startingCollectable,120,120);
 		t = new Timer();
 		t.schedule(new TimerTask() {
@@ -41,6 +44,9 @@ public class GameStage extends World
 			player.move(direction);
 		}
     }
+
+
+
 
 	@Override
 	public void act() {

@@ -6,9 +6,10 @@ import mayflower.Actor;
 public class Collectable extends Actor{
 
     public GameStage gameStage;
+    public Snake snake;
 
-
-    public Collectable(){
+    public Collectable(Snake a){
+        snake = a;
         setImage("img/shekle.png");
         this.gameStage= gameStage;
 
@@ -24,7 +25,8 @@ public class Collectable extends Actor{
     @Override
     public void act(){
         if (this.isTouching(SnakePart.class)) {
-//            gameStage.removeObject(this);
+            snake.increaseSnakeSize();
+            this.getWorld().removeObject(this);
 
         }
     }
