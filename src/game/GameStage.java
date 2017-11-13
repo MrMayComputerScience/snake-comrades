@@ -13,11 +13,8 @@ public class GameStage extends World
 	private Random rand;
 	private Timer t;
 	private String direction = "";
-<<<<<<< HEAD
 	Collectable startingCollectable;
-=======
 	private KeyCounter k;
->>>>>>> 439bd9839cc1e255bba2c2e99f8d59e0327faf6e
 
     public GameStage(ScoreBoard scoreBoard,KeyCounter j)
     {
