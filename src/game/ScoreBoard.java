@@ -22,6 +22,11 @@ public class ScoreBoard extends Actor
     	score++;
     	act();
     }
+    public void minusScore()
+    {
+        score-=249;
+        act();
+    }
 
     public int getScore()
     {

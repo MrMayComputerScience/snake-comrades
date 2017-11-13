@@ -11,6 +11,7 @@ import mayflower.*;
 public class StartMenu extends World
 {
 	private ScoreBoard s;
+	private KeyCounter k;
 	private LongMenuButton singleplayer, localMulti, netMulti;
 	private ShortMenuButton lootboxes, quit;
 	private int score;
@@ -35,13 +36,16 @@ public class StartMenu extends World
     	addObject(quit, 403, 414);
     }
 
-    public StartMenu(ScoreBoard a)
+    public StartMenu(ScoreBoard a, KeyCounter j)
     {
 
-    	setBackground("img/Background.jpg");
+
+    	setBackground("img/titlescreen_minecraft.png");
     	s = a;
+    	k=j;
 		score = a.getScore();
     	addObject(s, 50,50);
+    	addObject(k,50,65);
     }
 
     @Override
