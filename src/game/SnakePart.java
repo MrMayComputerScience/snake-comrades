@@ -5,10 +5,18 @@ import mayflower.*;
 public class SnakePart extends Actor
 {
     boolean isFront = false;
-    public SnakePart(boolean head)
+
+    public GameStage gameStage;
+    public Snake snake;
+
+
+    public SnakePart(boolean head, Snake a)
     {
+        snake = a;
+        this.gameStage = gameStage;
         setImage("img/snakePhoto.png");
         isFront = head;
+
     }
 
     public void move(int x, int y) {
@@ -18,18 +26,18 @@ public class SnakePart extends Actor
     @Override
     public void act()
     {
+        //This if statement determines if this specific SnakePart is the head of the snake.
         if(isFront) {
+            /*
+             Checks if the head of the snake is touching a collectable, and if so,
+             increases the snake size.
+             */
             if (this.isTouching(Collectable.class)) {
+                    snake.increaseSnakeSize();
 
-                //commented out so I can 
-                //increaseSnakeSizeCall();
             }
         }
     }
 
-
-    public void increaseSnakeSizeCall(){
-
-    }
 }
 

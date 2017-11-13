@@ -5,7 +5,16 @@ import mayflower.Actor;
 
 public class Collectable extends Actor{
 
-    public Collectable(){setImage("img/shekle.png");}
+    public GameStage gameStage;
+
+
+    public Collectable(){
+        setImage("img/shekle.png");
+        this.gameStage= gameStage;
+
+    }
+
+
 
     public void Contact(){
 
@@ -14,7 +23,10 @@ public class Collectable extends Actor{
 
     @Override
     public void act(){
+        if (this.isTouching(SnakePart.class)) {
+//            gameStage.removeObject(this);
 
+        }
     }
 
 

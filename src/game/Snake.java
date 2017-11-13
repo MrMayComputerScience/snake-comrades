@@ -26,7 +26,7 @@ public class Snake extends Actor {
         snakeLocationY = new ArrayList<>();
         snakeLocationX.add(x);
         snakeLocationY.add(y);
-        SnakePart sn = new SnakePart();
+        SnakePart sn = new SnakePart(true, this);
         gameStage.addObject(sn, x, y);
         snakeParts.add(sn);
         currentlyCopied = false;
@@ -42,7 +42,7 @@ public class Snake extends Actor {
         int copyX = snakeLocationX.get(snakeLocationX.size() - 1);
         int copyY = snakeLocationY.get(snakeLocationY.size() - 1);
 
-        SnakePart sn = new SnakePart();
+        SnakePart sn = new SnakePart(false, this);
         gameStage.addObject(sn, copyX, copyY);
         snakeParts.add(sn);
 

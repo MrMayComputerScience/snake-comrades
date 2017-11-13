@@ -18,7 +18,7 @@ public class StartMenu extends World
     public StartMenu()
     {
     	score = 0;
-    	setBackground("img/titlescreen_minecraft.jpg");
+    	setBackground("img/titlescreen_minecraft.png");
     	p = new PlayButton();
     	b = new PlayButton();
     	b.setImage("img/micro.png");
