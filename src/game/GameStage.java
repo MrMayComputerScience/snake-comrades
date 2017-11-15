@@ -19,7 +19,7 @@ public class GameStage extends World
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j)
     {
-    	setBackground("img/blue.png");
+    	setBackground("img/UkraineMap.png");
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
@@ -59,13 +59,13 @@ public class GameStage extends World
 
 	@Override
 	public void act() {
-		if(Mayflower.isKeyPressed(Keyboard.KEY_W) && !direction.equals("S")) {
+		if((Mayflower.isKeyPressed(Keyboard.KEY_W) || Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction.equals("S")) {
 			direction = ("N");
-		} else if(Mayflower.isKeyPressed(Keyboard.KEY_A) && !direction.equals("E")) {
+		} else if((Mayflower.isKeyPressed(Keyboard.KEY_A) || Mayflower.isKeyPressed(Keyboard.KEY_LEFT)) && !direction.equals("E")) {
 			direction = ("W");
-		} else if(Mayflower.isKeyPressed(Keyboard.KEY_S) && !direction.equals("N")) {
+		} else if((Mayflower.isKeyPressed(Keyboard.KEY_S)|| Mayflower.isKeyPressed(Keyboard.KEY_DOWN)) && !direction.equals("N")) {
 			direction = ("S");
-		} else if(Mayflower.isKeyPressed(Keyboard.KEY_D) && !direction.equals("W")) {
+		} else if((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT))&& !direction.equals("W")) {
 			direction = ("E");
 		} else if(Mayflower.isKeyPressed(Keyboard.KEY_GRAVE)) {
 			player.increaseSnakeSize();
