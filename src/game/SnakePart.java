@@ -34,6 +34,11 @@ public class SnakePart extends Actor
             if (this.isTouching(Collectable.class)) {
                 snake.increaseSnakeSize();
             }
+
+            if(this.getObjectsInRange(10, SnakePart.class).size() > 1 && !snake.currentlyCopied) {
+                this.gameStage = (GameStage) getWorld();
+                Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter));
+            }
         }
     }
 
