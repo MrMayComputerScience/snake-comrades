@@ -36,6 +36,6 @@ public class ScoreBoard extends Actor
     @Override
     public void act()
     {
-    	setImage(new MayflowerImage("Score: " + score, 16, new Color(0,255,0)));
+    	setImage(new MayflowerImage("Score: " + getScore(), 16, new Color(0,255,0)));
     }
 }

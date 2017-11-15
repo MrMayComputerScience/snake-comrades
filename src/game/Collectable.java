@@ -8,13 +8,11 @@ import java.util.Random;
 
 public class Collectable extends Actor{
 
-    public GameStage gameStage;
     public Snake snake;
 
     public Collectable(Snake a){
         snake = a;
         setImage("img/shekle.png");
-        this.gameStage= gameStage;
     }
 
     @Override
@@ -23,6 +21,7 @@ public class Collectable extends Actor{
             GameStage gag = (GameStage) this.getWorld();
             snake.increaseSnakeSize();
             gag.addCollectable();
+            gag.scoreBoard.plusScore();
             this.getWorld().removeObject(this);
         }
     }

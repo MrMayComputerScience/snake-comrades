@@ -12,7 +12,7 @@ public class SnakePart extends Actor
     public SnakePart(boolean head, Snake a)
     {
         snake = a;
-        this.gameStage = gameStage;
+        this.gameStage = (GameStage) getWorld();
         setImage("img/snakePhoto.png");
         isFront = head;
 
@@ -32,13 +32,8 @@ public class SnakePart extends Actor
              increases the snake size.
              */
             if (this.isTouching(Collectable.class)) {
-                    snake.increaseSnakeSize();
-                    gameStage.scoreBoard.plusScore();
+                snake.increaseSnakeSize();
             }
-        }
-
-        if(this.isTouching(SnakePart.class)) {
-            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter));
         }
     }
 
