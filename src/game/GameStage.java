@@ -80,7 +80,20 @@ public class GameStage extends World
 		Collectable a = new Collectable(player);
 		Random rand = new Random();
 		int x = rand.nextInt(780)+20;
-		int y = rand.nextInt(580) + 20;
+		int y = rand.nextInt(580)+20;
+
+		if(x<=20){
+			x= 100;
+		}
+		else if(x>=780){
+			x = 680;
+		}
+		if(y <= 20){
+			y=100;
+		}
+		else if(y>=580){
+			y= 480;
+		}
 		addObject(a,x,y);
 
 	}
