@@ -12,27 +12,13 @@ public class Collectable extends Actor{
         snake = a;
         setImage("img/shekle.png");
         this.gameStage= gameStage;
-
     }
-
-
-
-    public void Contact(){
-
-    }
-
 
     @Override
     public void act(){
         if (this.isTouching(SnakePart.class)) {
             snake.increaseSnakeSize();
             this.getWorld().removeObject(this);
-
         }
     }
-
-
-
-
-
 }

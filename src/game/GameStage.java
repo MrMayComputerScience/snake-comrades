@@ -56,9 +56,6 @@ public class GameStage extends World
 		}
     }
 
-
-
-
 	@Override
 	public void act() {
 		if(Mayflower.isKeyPressed(Keyboard.KEY_W) && !direction.equals("S")) {
