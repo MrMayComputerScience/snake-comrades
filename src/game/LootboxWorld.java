@@ -19,7 +19,7 @@ public class LootboxWorld  extends World
         oof = new PlayButton();
         oof.setImage("img/casescreen.png");
         l = new PlayButton();
-        l.setImage("img/button.png");
+        l.setImage("img/opencrate.png");
         addObject(p, 600, 400);
         s = a;
         score = s.getScore();
@@ -28,7 +28,7 @@ public class LootboxWorld  extends World
         addObject(k, 50,65);
         addObject(oof,100,100);
         addObject(b,171,293);
-        addObject(l,271,300);
+        addObject(l,520,320);
     }
     @Override
     public void act()
