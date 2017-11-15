@@ -101,4 +101,9 @@ public class Snake extends Actor {
             snakeParts.get(i).move(snakeLocationX.get(i), snakeLocationY.get(i));
         }
     }
+
+
+    public void addC(){
+        gameStage.addCollectable();
+    }
 }

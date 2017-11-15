@@ -4,6 +4,8 @@ import java.util.Random;
 import mayflower.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Random;
+
 
 public class GameStage extends World
 {
@@ -69,4 +71,27 @@ public class GameStage extends World
 			player.increaseSnakeSize();
 		}
 	}
+
+	public void addCollectable(){
+		Collectable a = new Collectable(player);
+		Random rand = new Random();
+		int x = rand.nextInt(780)+20;
+		int y = rand.nextInt(580) + 20;
+		addObject(a,x,y);
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
