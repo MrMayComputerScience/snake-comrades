@@ -16,6 +16,7 @@ public class GameStage extends World
 	private String direction = "";
 	Collectable startingCollectable;
 	public KeyCounter keyCounter;
+	private boolean movedThisTick;
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j)
     {
@@ -34,6 +35,7 @@ public class GameStage extends World
 			@Override
 			public void run() {
 				tick();
+				movedThisTick = false;
 			}
 		}, 75, 75);
 
@@ -59,16 +61,23 @@ public class GameStage extends World
 
 	@Override
 	public void act() {
-		if((Mayflower.isKeyPressed(Keyboard.KEY_W) || Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction.equals("S")) {
-			direction = ("N");
-		} else if((Mayflower.isKeyPressed(Keyboard.KEY_A) || Mayflower.isKeyPressed(Keyboard.KEY_LEFT)) && !direction.equals("E")) {
-			direction = ("W");
-		} else if((Mayflower.isKeyPressed(Keyboard.KEY_S)|| Mayflower.isKeyPressed(Keyboard.KEY_DOWN)) && !direction.equals("N")) {
-			direction = ("S");
-		} else if((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT))&& !direction.equals("W")) {
-			direction = ("E");
-		} else if(Mayflower.isKeyPressed(Keyboard.KEY_GRAVE)) {
-			player.increaseSnakeSize();
+    	if(!movedThisTick) {
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_W) || Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction.equals("S")) {
+				direction = ("N");
+				movedThisTick = true;
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A) || Mayflower.isKeyPressed(Keyboard.KEY_LEFT)) && !direction.equals("E")) {
+				direction = ("W");
+				movedThisTick = true;
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S) || Mayflower.isKeyPressed(Keyboard.KEY_DOWN)) && !direction.equals("N")) {
+				direction = ("S");
+				movedThisTick = true;
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)) && !direction.equals("W")) {
+				direction = ("E");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_GRAVE)) {
+				player.increaseSnakeSize();
+				movedThisTick = true;
+			}
 		}
 	}
 
