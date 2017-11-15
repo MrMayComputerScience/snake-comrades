@@ -15,7 +15,8 @@ public class Wall extends Actor
     @Override
     public void act() {
         if(this.isTouching(SnakePart.class)) {
-            Mayflower.setWorld(new GameOver());
+            this.gameStage = (GameStage) getWorld();
+            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter));
         }
     }
 }

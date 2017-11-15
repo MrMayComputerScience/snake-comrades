@@ -9,7 +9,6 @@ public class SnakePart extends Actor
     public GameStage gameStage;
     public Snake snake;
 
-
     public SnakePart(boolean head, Snake a)
     {
         snake = a;
@@ -34,8 +33,12 @@ public class SnakePart extends Actor
              */
             if (this.isTouching(Collectable.class)) {
                     snake.increaseSnakeSize();
-
+                    gameStage.scoreBoard.plusScore();
             }
+        }
+
+        if(this.isTouching(SnakePart.class)) {
+            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter));
         }
     }
 

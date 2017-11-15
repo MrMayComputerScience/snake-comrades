@@ -1,6 +1,5 @@
 package game;
 
-import java.security.Key;
 import java.util.Random;
 import mayflower.*;
 import java.util.Timer;
@@ -8,13 +7,13 @@ import java.util.TimerTask;
 
 public class GameStage extends World
 {
-	private ScoreBoard scoreBoard;
+	public ScoreBoard scoreBoard;
 	private Snake player;
 	private Random rand;
 	private Timer t;
 	private String direction = "";
 	Collectable startingCollectable;
-	private KeyCounter k;
+	public KeyCounter keyCounter;
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j)
     {
@@ -36,8 +35,8 @@ public class GameStage extends World
 			}
 		}, 75, 75);
 
-		k=j;
-		addObject(k,50,65);
+		keyCounter =j;
+		addObject(keyCounter,50,65);
 
 		//Spawn in walls
 		for (int i = 0; i < 30; i++) {
