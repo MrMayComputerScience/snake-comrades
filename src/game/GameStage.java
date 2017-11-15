@@ -79,8 +79,8 @@ public class GameStage extends World
 	public void addCollectable(){
 		Collectable a = new Collectable(player);
 		Random rand = new Random();
-		int x = rand.nextInt(760)+1;
-		int y = rand.nextInt(560) + 1;
+		int x = rand.nextInt(780)+20;
+		int y = rand.nextInt(580) + 20;
 		addObject(a,x,y);
 
 	}
