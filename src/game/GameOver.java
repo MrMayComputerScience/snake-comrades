@@ -12,7 +12,7 @@ public class GameOver extends World {
     public GameOver(ScoreBoard scoreBoard, KeyCounter j) {
 
         setBackground("img/death.jpg");
-        l = new StringActor("You scored " + scoreBoard.getScore() + " points!");
+        l = new StringActor("You have " + scoreBoard.getScore() + " points!");
         addObject(l, 400, 300);
         s=scoreBoard;
         k=j;

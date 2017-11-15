@@ -13,9 +13,11 @@ public class KeyCounter extends Actor
     public void plusScore()
     {
         keys++;
-        act();
     }
-
+    public void minusScore()
+    {
+        keys--;
+    }
     public int getScore()
     {
         return keys;

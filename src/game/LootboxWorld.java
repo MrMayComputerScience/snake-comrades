@@ -5,6 +5,7 @@ public class LootboxWorld  extends World
     private ScoreBoard s;
     private PlayButton p;
     private PlayButton b;
+    private PlayButton l;
     private PlayButton oof;
     private KeyCounter k;
     private int score;
@@ -17,6 +18,8 @@ public class LootboxWorld  extends World
         b.setImage("img/buykey.png");
         oof = new PlayButton();
         oof.setImage("img/casescreen.png");
+        l = new PlayButton();
+        l.setImage("img/button.png");
         addObject(p, 600, 400);
         s = a;
         score = s.getScore();
@@ -25,6 +28,7 @@ public class LootboxWorld  extends World
         addObject(k, 50,65);
         addObject(oof,100,100);
         addObject(b,171,293);
+        addObject(l,271,300);
     }
     @Override
     public void act()
@@ -34,7 +38,11 @@ public class LootboxWorld  extends World
             StartMenu nextWorld = new StartMenu(s,k);
             Mayflower.setWorld(nextWorld);
         }
-        if(Mayflower.mouseClicked(b) && k.getScore()>=249)
+        else if(Mayflower.mouseClicked(l)&&k.getScore()>=1)
+        {
+            k.minusScore();
+        }
+        else if(Mayflower.mouseClicked(b) && s.getScore()>=249)
         {
             k.plusScore();
             s.minusScore();
