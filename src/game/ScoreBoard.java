@@ -21,6 +21,10 @@ public class ScoreBoard extends Actor
     {
     	score++;
     }
+    public void addKeyScore()
+    {
+        score +=249;
+    }
     public void minusScore()
     {
         score-=249;

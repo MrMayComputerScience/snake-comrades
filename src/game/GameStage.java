@@ -74,9 +74,6 @@ public class GameStage extends World
 			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)) && !direction.equals("W")) {
 				direction = ("E");
 				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_GRAVE)) {
-				player.increaseSnakeSize();
-				movedThisTick = true;
 			}
 		}
 	}
