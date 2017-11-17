@@ -15,11 +15,13 @@ public class Snake extends Actor {
     public List<Integer> snakeLocationY;
 
     public GameStage gameStage;
+    public int skin;
 
     //tells whether a copy just occurred for the snake.
     public boolean currentlyCopied = false;
 
-    Snake(int x, int y, GameStage gameStage) {
+    Snake(int x, int y, GameStage gameStage,int i) {
+        skin = i;
         this.gameStage = gameStage;
         snakeParts = new ArrayList<>();
         snakeLocationX = new ArrayList<>();

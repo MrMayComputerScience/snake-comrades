@@ -13,7 +13,7 @@ public class SnakePart extends Actor
     {
         snake = a;
         this.gameStage = (GameStage) getWorld();
-        setImage("img/snakePhoto.png");
+        setImage("img/snakePhoto"+ snake.skin +".png");
         isFront = head;
 
     }
@@ -37,7 +37,7 @@ public class SnakePart extends Actor
 
             if(this.getObjectsInRange(10, SnakePart.class).size() > 1 && !snake.currentlyCopied) {
                 this.gameStage = (GameStage) getWorld();
-                Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter));
+                Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin));
             }
         }
     }

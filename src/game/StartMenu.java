@@ -16,9 +16,11 @@ public class StartMenu extends World
 	private ShortMenuButton lootboxes, quit;
 	private int score;
 	private int keys;
+	private int skin;
 
     public StartMenu()
     {
+    	skin = 0;
     	score = 0;
     	keys = 0;
     	setBackground("img/titlescreen_minecraft.png");
@@ -40,9 +42,10 @@ public class StartMenu extends World
     	addObject(quit, 403, 414);
     }
 
-    public StartMenu(ScoreBoard a, KeyCounter j)
+    public StartMenu(ScoreBoard a, KeyCounter j,int i)
 	{
 		setBackground("img/titlescreen_minecraft.png");
+		skin = i;
     	s = a;
     	k = j;
 		score = a.getScore();
@@ -67,12 +70,12 @@ public class StartMenu extends World
     public void act()
     {
 		if(Mayflower.mouseClicked(singleplayer)) {
-			GameStage nextWorld = new GameStage(s,k);
+			GameStage nextWorld = new GameStage(s,k,skin);
 			Mayflower.setWorld(nextWorld);
 		}
 
 		if(Mayflower.mouseClicked(lootboxes)) {
-			LootboxWorld nextWorld = new LootboxWorld(s,k);
+			LootboxWorld nextWorld = new LootboxWorld(s,k,skin);
 			Mayflower.setWorld(nextWorld);
 		}
 

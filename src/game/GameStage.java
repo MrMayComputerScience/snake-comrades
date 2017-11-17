@@ -17,14 +17,16 @@ public class GameStage extends World
 	Collectable startingCollectable;
 	public KeyCounter keyCounter;
 	private boolean movedThisTick;
+	public int skin;
 
-    public GameStage(ScoreBoard scoreBoard, KeyCounter j)
+    public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
     {
     	setBackground("img/UkraineMap.png");
+    	skin=f;
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
-		player = new Snake(100,100, this);
+		player = new Snake(100,100, this,skin);
 		startingCollectable	= new Collectable(player);
 		addObject(player,100,100);
 

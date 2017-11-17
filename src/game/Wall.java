@@ -8,7 +8,7 @@ public class Wall extends Actor
     public GameStage gameStage;
 
     public Wall() {
-        setImage("img/wall.png");
+        setImage("img/wall.jpg");
         this.gameStage = (GameStage) getWorld();
     }
 
@@ -16,7 +16,7 @@ public class Wall extends Actor
     public void act() {
         if(this.isTouching(SnakePart.class)) {
             this.gameStage = (GameStage) getWorld();
-            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter));
+            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin));
         }
     }
 }

@@ -9,9 +9,11 @@ public class LootboxWorld  extends World
     private PlayButton oof;
     private KeyCounter k;
     private int score;
-    public LootboxWorld(ScoreBoard a, KeyCounter j)
+    private int skin;
+    public LootboxWorld(ScoreBoard a, KeyCounter j,int i)
     {
         setBackground("img/Background.jpg");
+        skin=i;
         p = new PlayButton();
         p.setImage("img/back.png");
         b = new PlayButton();
@@ -35,7 +37,7 @@ public class LootboxWorld  extends World
     {
         if(Mayflower.mouseClicked(p))
         {
-            StartMenu nextWorld = new StartMenu(s,k);
+            StartMenu nextWorld = new StartMenu(s,k,skin);
             Mayflower.setWorld(nextWorld);
         }
         else if(Mayflower.mouseClicked(l)&&k.getScore()>=1)

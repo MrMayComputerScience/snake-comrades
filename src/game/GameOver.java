@@ -8,10 +8,12 @@ public class GameOver extends World {
     private ScoreBoard s;
     private KeyCounter k;
     private StringActor l;
+    private int skin;
 
-    public GameOver(ScoreBoard scoreBoard, KeyCounter j) {
+    public GameOver(ScoreBoard scoreBoard, KeyCounter j,int i) {
 
         setBackground("img/death.jpg");
+        skin = i;
         l = new StringActor("You have " + scoreBoard.getScore() + " points!");
         addObject(l, 400, 300);
         s=scoreBoard;
@@ -25,7 +27,7 @@ public class GameOver extends World {
     {
         if(Mayflower.mouseClicked(l))
         {
-            StartMenu nextWorld = new StartMenu(s,k);
+            StartMenu nextWorld = new StartMenu(s,k,skin);
             Mayflower.setWorld(nextWorld);
         }
     }
