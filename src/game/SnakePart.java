@@ -36,6 +36,8 @@ public class SnakePart extends Actor
             if (this.isTouching(Collectable.class)) {
                 snake.increaseSnakeSize();
             }
+        /*
+        //Commenting out for testing.
 
             if(this.getObjectsInRange(10, SnakePart.class).size() > 1 && !snake.currentlyCopied) {
                 this.gameStage = (GameStage) getWorld();
@@ -48,10 +50,11 @@ public class SnakePart extends Actor
                 this.gameStage = (GameStage) getWorld();
                 Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin));
             }
+        */
 
         }
 
-        if(this.getIntersectingObjects(SnakePart.class).size()>2 && !snake.currentlyCopied){
+        if(this.getIntersectingObjects(SnakePart.class).size()>1 && snake.currentlyCopied ==false){
             this.gameStage = (GameStage) getWorld();
             Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin));
         }
