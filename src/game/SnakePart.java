@@ -2,6 +2,8 @@ package game;
 
 import mayflower.*;
 
+import java.util.List;
+
 public class SnakePart extends Actor
 {
     boolean isFront = false;
@@ -39,7 +41,21 @@ public class SnakePart extends Actor
                 this.gameStage = (GameStage) getWorld();
                 Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin));
             }
+
+            //WHY WON'T THIS WORK!
+
+            if(this.getIntersectingObjects(SnakePart.class).size()>2 && !snake.currentlyCopied){
+                this.gameStage = (GameStage) getWorld();
+                Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin));
+            }
+
         }
+
+        if(this.getIntersectingObjects(SnakePart.class).size()>2 && !snake.currentlyCopied){
+            this.gameStage = (GameStage) getWorld();
+            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin));
+        }
+
     }
 
 }

@@ -86,6 +86,10 @@ public class GameStage extends World
 		int x = rand.nextInt(780)+20;
 		int y = rand.nextInt(580)+20;
 
+		x= (x/20) *20;
+		y = (y/20) * 20;
+
+
 		if(x<=20){
 			x= 100;
 		}
