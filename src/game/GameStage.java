@@ -21,7 +21,7 @@ public class GameStage extends World
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
     {
-    	setBackground("img/UkraineMap.png");
+    	setBackground("img/black.png");
     	skin=f;
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
