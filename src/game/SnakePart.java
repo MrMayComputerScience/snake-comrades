@@ -56,7 +56,7 @@ public class SnakePart extends Actor
 
         if(this.getIntersectingObjects(SnakePart.class).size()>1 && snake.currentlyCopied ==false){
             this.gameStage = (GameStage) getWorld();
-            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin));
+            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter,gameStage.skin,gameStage.keep));
         }
 
     }

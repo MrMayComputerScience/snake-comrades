@@ -16,7 +16,7 @@ public class Wall extends Actor
     public void act() {
         if(this.isTouching(SnakePart.class)) {
             this.gameStage = (GameStage) getWorld();
-            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin));
+            Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep));
         }
     }
 }

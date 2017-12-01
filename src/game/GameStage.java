@@ -18,11 +18,13 @@ public class GameStage extends World
 	public KeyCounter keyCounter;
 	private boolean movedThisTick;
 	public int skin;
+	public CurrentRun keep;
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
     {
     	setBackground("img/black.png");
     	skin=f;
+    	keep = new CurrentRun();
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
@@ -43,6 +45,7 @@ public class GameStage extends World
 
 		keyCounter =j;
 		addObject(keyCounter,50,65);
+		addObject(keep,50,80);
 
 		//Spawn in walls
 		for (int i = 0; i < 30; i++) {

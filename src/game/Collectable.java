@@ -22,6 +22,7 @@ public class Collectable extends Actor{
             snake.increaseSnakeSize();
             gag.addCollectable();
             gag.scoreBoard.plusScore();
+            gag.keep.plusScore();
             this.getWorld().removeObject(this);
         }
     }
