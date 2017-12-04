@@ -1,6 +1,10 @@
 package game;
 import mayflower.*;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Random;
 
 public class LootboxWorld  extends World
@@ -11,6 +15,7 @@ public class LootboxWorld  extends World
     private PlayButton l;
     private PlayButton oof;
     private PlayButton skins;
+    private PlayButton paypal;
     private KeyCounter k;
     private CurrentSkin q;
     private int score;
@@ -34,6 +39,9 @@ public class LootboxWorld  extends World
         s = a;
         score = s.getScore();
         addObject(s, 50,50);
+        paypal = new PlayButton();
+        paypal.setImage("img/paynow.png");
+        addObject(paypal, -25, 400);
         k=j;
         q = new CurrentSkin();
         addObject(q,50,80);
@@ -50,6 +58,13 @@ public class LootboxWorld  extends World
         {
             StartMenu nextWorld = new StartMenu(s,k,skin);
             Mayflower.setWorld(nextWorld);
+        }
+        else if(Mayflower.mouseClicked(paypal)) {
+            try {
+                Desktop.getDesktop().browse(new URI("https://www.paypal.me/electronicartss"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else if(Mayflower.mouseClicked(l)&&k.getScore()>=1)
         {
