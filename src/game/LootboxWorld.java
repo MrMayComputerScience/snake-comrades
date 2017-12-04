@@ -16,6 +16,10 @@ public class LootboxWorld  extends World
     private int score;
     private int skin;
     private Random rand;
+
+
+
+
     public LootboxWorld(ScoreBoard a, KeyCounter j,int i)
     {
         setBackground("img/Background.jpg");
@@ -42,6 +46,7 @@ public class LootboxWorld  extends World
         addObject(b,171,293);
         addObject(l,520,320);
         addObject(skins,150,84);
+
     }
     @Override
     public void act()

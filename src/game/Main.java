@@ -4,9 +4,11 @@ import mayflower.*;
 
 public class Main extends Mayflower
 {
+
     private Main()
     {
         super("Snake", 800, 600);
+
     }
 
     @Override
