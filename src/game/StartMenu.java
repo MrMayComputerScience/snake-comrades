@@ -42,12 +42,6 @@ public class StartMenu extends World
     	addObject(lootboxes, 233, 414);
     	addObject(quit, 403, 414);
 
-
-
-
-
-
-
 		jazz = new MayflowerMusic("img/jazz.wav");
 		jazz.play();
 		jazz.setVolume(1);
