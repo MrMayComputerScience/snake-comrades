@@ -22,7 +22,7 @@ public class GameStage extends World
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
     {
-    	setBackground("img/black.png");
+    	setBackground("img/black.jpg");
     	skin=f;
     	keep = new CurrentRun();
     	this.scoreBoard = scoreBoard;
