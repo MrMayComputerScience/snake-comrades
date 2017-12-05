@@ -4,16 +4,22 @@ import java.util.Random;
 import mayflower.*;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Random;
 
 
 public class GameStage extends World
 {
 	public ScoreBoard scoreBoard;
-	private Snake player;
+
+	private Snake player1;
+	private Snake player2;
+
 	private Random rand;
 	private Timer t;
-	private String direction = "";
+
+	private String direction1 = "";
+	private String direction2 = "";
+
+
 	Collectable startingCollectable;
 	public KeyCounter keyCounter;
 	private boolean movedThisTick;
@@ -28,12 +34,18 @@ public class GameStage extends World
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
-		player = new Snake(100,100, this,skin);
-		startingCollectable	= new Collectable(player);
-		addObject(player,100,100);
+
+
+		player1 = new Snake(100,100, this,skin);
+
+		//Trying to add another player. This one is mapped to the arrow keys.
+		player2 = new Snake(180,180,this,skin);
+
+		startingCollectable	= new Collectable(player1);
+		addObject(player1,100,100);
 
 		//Adding collectable
-		addObject(startingCollectable,120,120);
+		addObject(startingCollectable,160,160);
 		t = new Timer();
 		t.schedule(new TimerTask() {
 			@Override
@@ -59,32 +71,71 @@ public class GameStage extends World
 
     public void tick()
     {
-    	if(!direction.equals("")) {
-			player.move(direction);
+    	if(!direction1.equals("")) {
+			player1.move(direction1);
+		}
+		if(!direction2.equals("")){
+    		player2.move(direction2);
 		}
     }
 
 	@Override
 	public void act() {
     	if(!movedThisTick) {
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_W) || Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction.equals("S")) {
-				direction = ("N");
+
+    		//Commenting out to keep old work in the case that the new code breaks the program.
+    		/*
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_W) || Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction1.equals("S")) {
+				direction1 = ("N");
 				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A) || Mayflower.isKeyPressed(Keyboard.KEY_LEFT)) && !direction.equals("E")) {
-				direction = ("W");
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A) || Mayflower.isKeyPressed(Keyboard.KEY_LEFT)) && !direction1.equals("E")) {
+				direction1 = ("W");
 				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S) || Mayflower.isKeyPressed(Keyboard.KEY_DOWN)) && !direction.equals("N")) {
-				direction = ("S");
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S) || Mayflower.isKeyPressed(Keyboard.KEY_DOWN)) && !direction1.equals("N")) {
+				direction1 = ("S");
 				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)) && !direction.equals("W")) {
-				direction = ("E");
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)) && !direction1.equals("W")) {
+				direction1 = ("E");
 				movedThisTick = true;
 			}
+		*/
+
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_W)&& !direction1.equals("S"))) {
+				direction1 = ("N");
+				movedThisTick = true;
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A)  && !direction1.equals("E"))) {
+				direction1 = ("W");
+				movedThisTick = true;
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S)  && !direction1.equals("N"))) {
+				direction1 = ("S");
+				movedThisTick = true;
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D)  && !direction1.equals("W"))) {
+				direction1 = ("E");
+				movedThisTick = true;
+			}
+			//adding section for player1 two.
+
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction1.equals("S")) {
+				direction2 = ("N");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_LEFT) && !direction1.equals("E")) {
+				direction2 = ("W");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_DOWN) && !direction1.equals("N")) {
+				direction2 = ("S");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_RIGHT) && !direction1.equals("W")) {
+				direction2 = ("E");
+				movedThisTick = true;
+			}
+
+
+
 		}
 	}
 
 	public void addCollectable(){
-		Collectable a = new Collectable(player);
+		Collectable a = new Collectable(player1);
 		Random rand = new Random();
 		int x = rand.nextInt(780)+20;
 		int y = rand.nextInt(580)+20;
@@ -108,11 +159,11 @@ public class GameStage extends World
 		boolean cantPlace = false;
 
 		check:
-		for(int i = 0; i <player.snakeLocationX.size(); i++)
+		for(int i = 0; i < player1.snakeLocationX.size(); i++)
 		{
-			if(x == player.snakeLocationX.get(i))
+			if(x == player1.snakeLocationX.get(i))
 			{
-				if(y == player.snakeLocationY.get(i)) {
+				if(y == player1.snakeLocationY.get(i)) {
 					cantPlace = true;
 					break check;
 				}
@@ -132,11 +183,11 @@ public class GameStage extends World
 	//		if this happens, we add a collectable to 120x120 if the snake is not there. If the snake is there, we add it to the bottom right.
 			boolean cantPlace2 = false;
 			check2:
-			for(int i = 0; i <player.snakeLocationX.size(); i++)
+			for(int i = 0; i <player1.snakeLocationX.size(); i++)
 			{
-				if(120 == player.snakeLocationX.get(i))
+				if(120 == player1.snakeLocationX.get(i))
 				{
-					if(120 == player.snakeLocationY.get(i)) {
+					if(120 == player1.snakeLocationY.get(i)) {
 						cantPlace2 = true;
 						break check2;
 					}
