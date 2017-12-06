@@ -1,5 +1,6 @@
 package game;
 
+import mayflower.Actor;
 import mayflower.Keyboard;
 import mayflower.Mayflower;
 import mayflower.World;
@@ -22,12 +23,18 @@ public class GameStageLocalMultiplayer extends World
 	private String direction1 = "";
 	private String direction2 = "";
 
-
 	Collectable startingCollectable;
 	public KeyCounter keyCounter;
 	private boolean movedThisTick;
 	public int skin;
 	public CurrentRun keep;
+
+
+	//Keeps track of players.
+	int playerCount = 2;
+
+
+
 
     public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f)
     {
@@ -39,10 +46,10 @@ public class GameStageLocalMultiplayer extends World
 		rand = new Random();
 
 
-		player1 = new Snake(100,100,null, this,skin);
+		player1 = new Snake(100,100,null, this,skin, 1);
 
 		//Trying to add another player. This one is mapped to the arrow keys.
-		player2 = new Snake(180,180,null,this,skin);
+		player2 = new Snake(180,180,null,this,skin, 2);
 
 		startingCollectable	= new Collectable(player1, false, true);
 		addObject(player1,100,100);
@@ -66,6 +73,7 @@ public class GameStageLocalMultiplayer extends World
 		for (int i = 0; i < 30; i++) {
 			for (int k = 0; k < 40; k++) {
 				if(i == 0 || i == 29 || k == 0 || k == 39) {
+					System.out.println("Spawning Walls");
 					addObject(new Wall(false, true), k*20, i*20);
 				}
 			}
@@ -82,26 +90,16 @@ public class GameStageLocalMultiplayer extends World
 		}
     }
 
+    public void removePlayer(Actor removeDis){
+    	this.removeObject(removeDis);
+    	playerCount--;
+
+	}
+
 	@Override
 	public void act() {
     	if(!movedThisTick) {
 
-    		//Commenting out to keep old work in the case that the new code breaks the program.
-    		/*
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_W) || Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction1.equals("S")) {
-				direction1 = ("N");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A) || Mayflower.isKeyPressed(Keyboard.KEY_LEFT)) && !direction1.equals("E")) {
-				direction1 = ("W");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S) || Mayflower.isKeyPressed(Keyboard.KEY_DOWN)) && !direction1.equals("N")) {
-				direction1 = ("S");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)) && !direction1.equals("W")) {
-				direction1 = ("E");
-				movedThisTick = true;
-			}
-		*/
 
 			if ((Mayflower.isKeyPressed(Keyboard.KEY_W)&& !direction1.equals("S"))) {
 				direction1 = ("N");
@@ -133,6 +131,24 @@ public class GameStageLocalMultiplayer extends World
 			}
 
 
+
+			//end condition
+			if(playerCount<= 1){
+
+				Snake winningS = (Snake)getObjects(Snake.class).get(0);
+				if(winningS.playerNumber == 1){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
+				}
+				else if(winningS.playerNumber == 2){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 2));
+				}
+				else if(winningS.playerNumber == 3){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 3));
+				}
+				else if(winningS.playerNumber == 4){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
+				}
+			}
 
 		}
 	}
@@ -180,26 +196,7 @@ public class GameStageLocalMultiplayer extends World
 		else{
 			addCollectable();
 		}
-		//Commenting out to see if recursive works because its more efficent.
-		/*
-		else{
-	//		if this happens, we add a collectable to 120x120 if the snake is not there. If the snake is there, we add it to the bottom right.
-			boolean cantPlace2 = false;
-			check2:
-			for(int i = 0; i <player1.snakeLocationX.size(); i++)
-			{
-				if(120 == player1.snakeLocationX.get(i))
-				{
-					if(120 == player1.snakeLocationY.get(i)) {
-						cantPlace2 = true;
-						break check2;
-					}
-				}
-			}
-			if(!cantPlace2){
-				this.addObject(a,120,120);
-			}
-		}\*/
+
 
 	}
 

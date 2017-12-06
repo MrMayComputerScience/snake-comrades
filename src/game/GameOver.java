@@ -10,7 +10,10 @@ public class GameOver extends World {
     private StringActor l;
     private int skin;
 
-    public GameOver(ScoreBoard scoreBoard, KeyCounter j,int i,CurrentRun m) {
+    private int playerNumb;
+
+
+    public GameOver(ScoreBoard scoreBoard, KeyCounter j,int i,CurrentRun m, int pNumb) {
 
         setBackground("img/death.jpg");
         skin = i;
@@ -20,6 +23,9 @@ public class GameOver extends World {
         k=j;
         addObject(s,50,50);
         addObject(k,50,65);
+
+        playerNumb = pNumb;
+
     }
 
     @Override
