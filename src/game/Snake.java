@@ -66,6 +66,10 @@ public class Snake extends Actor {
         }
     }
 
+    public void move(int x, int y) {
+        setLocation(x,y);
+    }
+
     public void increaseSnakeSize() {
 
         isOne = false;

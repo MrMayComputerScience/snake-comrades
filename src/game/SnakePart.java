@@ -24,7 +24,7 @@ public class SnakePart extends Actor
             this.gameStage = (GameStage) getWorld();
         }
         else if(local){
-            this.gameStageL = (GameStageLocalMultiplayer)getWorld();
+            this.gameStageL = (GameStageLocalMultiplayer) getWorld();
         }
 
         setImage("img/snakePhoto"+ snake.skin +".png");
@@ -51,29 +51,27 @@ public class SnakePart extends Actor
             if (this.isTouching(Collectable.class)) {
                 snake.increaseSnakeSize();
             }
-
-
         }
 
         if(isLocal) {
-            if (this.getIntersectingObjects(SnakePart.class).size() > 1 && snake.currentlyCopied == false) {
+            if (this.getIntersectingObjects(SnakePart.class).size() > 1 && !snake.currentlyCopied) {
                 this.gameStageL = (GameStageLocalMultiplayer) getWorld();
                 Mayflower.setWorld(new GameOver(gameStageL.scoreBoard, gameStageL.keyCounter, gameStageL.skin, gameStageL.keep));
             }
             if (snake.isOne) {
-                if (this.getIntersectingObjects(SnakePart.class).size() > 0 && snake.currentlyCopied == false) {
+                if (this.getIntersectingObjects(SnakePart.class).size() > 0 && !snake.currentlyCopied) {
                     this.gameStageL = (GameStageLocalMultiplayer) getWorld();
                     Mayflower.setWorld(new GameOver(gameStageL.scoreBoard, gameStageL.keyCounter, gameStageL.skin, gameStageL.keep));
                 }
             }
         }
         if(isSingle) {
-            if (this.getIntersectingObjects(SnakePart.class).size() > 1 && snake.currentlyCopied == false) {
+            if (this.getIntersectingObjects(SnakePart.class).size() > 1 && !snake.currentlyCopied) {
                 this.gameStage = (GameStage) getWorld();
                 Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep));
             }
             if (snake.isOne) {
-                if (this.getIntersectingObjects(SnakePart.class).size() > 0 && snake.currentlyCopied == false) {
+                if (this.getIntersectingObjects(SnakePart.class).size() > 0 && !snake.currentlyCopied) {
                     this.gameStage = (GameStage) getWorld();
                     Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep));
                 }

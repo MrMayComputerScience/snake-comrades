@@ -10,6 +10,7 @@ import mayflower.*;
 public class ScoreBoard extends Actor
 {
 	private int score;
+	private boolean dirty = false;
 
     public ScoreBoard()
     {
@@ -20,14 +21,19 @@ public class ScoreBoard extends Actor
     public void plusScore()
     {
     	score++;
+        dirty = true;
     }
+
     public void addKeyScore()
     {
         score +=249;
+        dirty = true;
     }
-    public void minusScore()
+
+    public void minusKeyScore()
     {
         score-=249;
+        dirty = true;
     }
 
     public int getScore()
@@ -38,6 +44,9 @@ public class ScoreBoard extends Actor
     @Override
     public void act()
     {
-    	setImage(new MayflowerImage("Score: " + getScore(), 16, new Color(0,255,0)));
+        if(dirty) {
+            setImage(new MayflowerImage("Score: " + getScore(), 16, new Color(0, 255, 0)));
+            dirty = false;
+        }
     }
 }

@@ -2,9 +2,7 @@ package game;
 import mayflower.*;
 
 import java.awt.*;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Random;
 
 public class LootboxWorld  extends World
@@ -135,7 +133,7 @@ public class LootboxWorld  extends World
         else if(Mayflower.mouseClicked(b) && s.getScore()>=249)
         {
             k.plusScore();
-            s.minusScore();
+            s.minusKeyScore();
         }
     }
 }

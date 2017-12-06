@@ -18,6 +18,7 @@ public class Wall extends Actor
         isLocal = local;
 
         setImage("img/wall.jpg");
+
         if(isSingle) {
             this.gameStage = (GameStage) getWorld();
         }
@@ -42,3 +43,4 @@ public class Wall extends Actor
         }
     }
 }
+

@@ -66,6 +66,9 @@ public class GameStage extends World
 				}
 			}
 		}
+
+		//Spawn in portal
+
 	}
 
     public void tick()
@@ -78,6 +81,9 @@ public class GameStage extends World
 
 	@Override
 	public void act() {
+
+		System.out.println("Objects: " + getObjects().size());
+
     	if(!movedThisTick) {
 
     		//Commenting out to keep old work in the case that the new code breaks the program.

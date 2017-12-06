@@ -91,7 +91,7 @@ public class StartMenu extends World
 		if(Mayflower.mouseClicked(quit)) {
 			Mayflower.exit();
 		}
-		if (Mayflower.isKeyPressed(Keyboard.KEY_GRAVE))
+		if (Mayflower.isKeyDown(Keyboard.KEY_GRAVE))
 		{
 			s.addKeyScore();
 		}
