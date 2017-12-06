@@ -11,35 +11,49 @@ public class Collectable extends Actor{
 
     public Snake snake;
 
-    public Collectable(Snake a){
+
+    private boolean isSingle;
+    private boolean isLocal;
+
+    public Collectable(Snake a, boolean single, boolean local){
         snake = a;
         setImage("img/shekle.png");
+
+        isSingle = single;
+        isLocal = local;
+
     }
 
     @Override
     public void act() {
         if (this.isTouching(SnakePart.class)) {
-            List intrsAct = this.getIntersectingObjects(this.getClass());
 
-            //Trying to get the snake from each collectable it intersects.
-            for(int i = 0; i < intrsAct.size(); i++){
-                if(intrsAct.get(i) instanceof  SnakePart){
-                    snake = ((SnakePart) intrsAct.get(i)).snake;
-                }
+            //Finds the snake from the SnakePart it just intersected.
+            snake = this.getOneIntersectingObject(SnakePart.class).snake;
+
+//Use booleans to determine if I need to cast as a gamestage or localgmultiplayergamestage.
+
+            if(isSingle) {
+                GameStage gag = (GameStage) this.getWorld();
+
+
+                snake.increaseSnakeSize();
+                gag.addCollectable();
+                gag.scoreBoard.plusScore();
+                gag.keep.plusScore();
+                this.getWorld().removeObject(this);
+
             }
-            //Need to set the snake variable to the snake the collectable is intersecting.
+            else if(isLocal){
+                GameStageLocalMultiplayer gagLocal = (GameStageLocalMultiplayer) this.getWorld();
 
 
-
-
-            GameStage gag = (GameStage) this.getWorld();
-            snake.increaseSnakeSize();
-            gag.addCollectable();
-            gag.scoreBoard.plusScore();
-            gag.keep.plusScore();
-            this.getWorld().removeObject(this);
-
-
+                snake.increaseSnakeSize();
+                gagLocal.addCollectable();
+                gagLocal.scoreBoard.plusScore();
+                gagLocal.keep.plusScore();
+                this.getWorld().removeObject(this);
+            }
 
         }
     }

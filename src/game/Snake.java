@@ -15,23 +15,48 @@ public class Snake extends Actor {
     public List<Integer> snakeLocationY;
 
     public GameStage gameStage;
+
+    public GameStageLocalMultiplayer gameStageL;
+
+
     public int skin;
+
+    //isOne is used for intersecting each other when at size 1.
+    public boolean isOne;
 
     //tells whether a copy just occurred for the snake.
     public boolean currentlyCopied = false;
 
-    Snake(int x, int y, GameStage gameStage,int i) {
+    Snake(int x, int y, GameStage gameStage,GameStageLocalMultiplayer gameStageLoc,int i) {
         skin = i;
         this.gameStage = gameStage;
+        gameStageL = gameStageLoc;
+
         snakeParts = new ArrayList<>();
         snakeLocationX = new ArrayList<>();
         snakeLocationY = new ArrayList<>();
         snakeLocationX.add(x);
         snakeLocationY.add(y);
-        SnakePart sn = new SnakePart(true, this);
-        gameStage.addObject(sn, x, y);
-        snakeParts.add(sn);
+
+        SnakePart sn;
+
+     if(gameStage != null) {
+         sn = new SnakePart(true, this, true, false);
+         gameStage.addObject(sn, x, y);
+         snakeParts.add(sn);
+     }
+     else if(gameStageL != null){
+         sn = new SnakePart(true, this, false, true);
+         gameStageL.addObject(sn,x,y);
+         snakeParts.add(sn);
+     }
+
         currentlyCopied = false;
+        isOne = true;
+
+
+
+
     }
 
     @Override
@@ -43,12 +68,23 @@ public class Snake extends Actor {
 
     public void increaseSnakeSize() {
 
+        isOne = false;
+
         int copyX = snakeLocationX.get(snakeLocationX.size() - 1);
         int copyY = snakeLocationY.get(snakeLocationY.size() - 1);
 
-        SnakePart sn = new SnakePart(false, this);
-        gameStage.addObject(sn, copyX, copyY);
-        snakeParts.add(sn);
+        SnakePart sn;
+        if(gameStage != null) {
+            sn = new SnakePart(false, this, true, false);
+            gameStage.addObject(sn, copyX, copyY);
+            snakeParts.add(sn);
+        }
+        else if(gameStageL !=null){
+            sn = new SnakePart(false, this, false, true);
+            gameStageL.addObject(sn,copyX,copyY);
+            snakeParts.add(sn);
+        }
+
 
         snakeLocationX.add(copyX);
         snakeLocationY.add(copyY);
@@ -106,6 +142,11 @@ public class Snake extends Actor {
 
 
     public void addC(){
-        gameStage.addCollectable();
+        if(gameStage != null) {
+            gameStage.addCollectable();
+        }
+        else{
+            gameStageL.addCollectable();
+        }
     }
 }

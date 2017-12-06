@@ -1,17 +1,20 @@
 package game;
 
+import mayflower.Keyboard;
+import mayflower.Mayflower;
+import mayflower.World;
+
 import java.util.Random;
-import mayflower.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class GameStage extends World
+public class GameStageLocalMultiplayer extends World
 {
 	public ScoreBoard scoreBoard;
 
 	private Snake player1;
-
+	private Snake player2;
 
 	private Random rand;
 	private Timer t;
@@ -26,7 +29,7 @@ public class GameStage extends World
 	public int skin;
 	public CurrentRun keep;
 
-    public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
+    public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f)
     {
     	setBackground("img/black.jpg");
     	skin=f;
@@ -36,11 +39,12 @@ public class GameStage extends World
 		rand = new Random();
 
 
-		player1 = new Snake(100,100, this,null,skin);
+		player1 = new Snake(100,100,null, this,skin);
 
+		//Trying to add another player. This one is mapped to the arrow keys.
+		player2 = new Snake(180,180,null,this,skin);
 
-
-		startingCollectable	= new Collectable(player1,true, false);
+		startingCollectable	= new Collectable(player1, false, true);
 		addObject(player1,100,100);
 
 		//Adding collectable
@@ -62,7 +66,7 @@ public class GameStage extends World
 		for (int i = 0; i < 30; i++) {
 			for (int k = 0; k < 40; k++) {
 				if(i == 0 || i == 29 || k == 0 || k == 39) {
-					addObject(new Wall(true, false), k*20, i*20);
+					addObject(new Wall(false, true), k*20, i*20);
 				}
 			}
 		}
@@ -73,7 +77,9 @@ public class GameStage extends World
     	if(!direction1.equals("")) {
 			player1.move(direction1);
 		}
-
+		if(!direction2.equals("")){
+    		player2.move(direction2);
+		}
     }
 
 	@Override
@@ -132,7 +138,7 @@ public class GameStage extends World
 	}
 
 	public void addCollectable(){
-		Collectable a = new Collectable(player1, true, false);
+		Collectable a = new Collectable(player1, false, true);
 		Random rand = new Random();
 		int x = rand.nextInt(780)+20;
 		int y = rand.nextInt(580)+20;

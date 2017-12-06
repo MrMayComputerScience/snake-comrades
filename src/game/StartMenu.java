@@ -78,6 +78,10 @@ public class StartMenu extends World
 			GameStage nextWorld = new GameStage(s,k,skin);
 			Mayflower.setWorld(nextWorld);
 		}
+		if(Mayflower.mouseClicked(localMulti)){
+			GameStageLocalMultiplayer gameStageLM = new GameStageLocalMultiplayer(s,k,skin);
+			Mayflower.setWorld(gameStageLM);
+		}
 
 		if(Mayflower.mouseClicked(lootboxes)) {
 			LootboxWorld nextWorld = new LootboxWorld(s,k,skin);
