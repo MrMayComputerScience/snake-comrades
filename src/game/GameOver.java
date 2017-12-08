@@ -10,9 +10,24 @@ public class GameOver extends World {
     private StringActor l;
     private int skin;
 
-    public GameOver(ScoreBoard scoreBoard, KeyCounter j,int i,CurrentRun m) {
+    private int playerNumb;
 
-        setBackground("img/death.jpg");
+
+    public GameOver(ScoreBoard scoreBoard, KeyCounter j,int i,CurrentRun m, int pNumb) {
+
+        playerNumb = pNumb;
+        if(playerNumb == 1){
+            setBackground("img/winP1.png");
+        }
+       else if(playerNumb ==2){
+            setBackground("img/winP2.png");
+        }
+        else if(playerNumb ==3){
+            setBackground("img/winP3.png");
+        }
+        else if(playerNumb ==4){
+            setBackground("img/winP4.png");
+        }
         skin = i;
         l = new StringActor("You got " + m.getScore() + " points!");
         addObject(l, 400, 300);
@@ -20,6 +35,9 @@ public class GameOver extends World {
         k=j;
         addObject(s,50,50);
         addObject(k,50,65);
+
+
+
     }
 
     @Override

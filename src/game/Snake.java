@@ -27,7 +27,12 @@ public class Snake extends Actor {
     //tells whether a copy just occurred for the snake.
     public boolean currentlyCopied = false;
 
-    Snake(int x, int y, GameStage gameStage,GameStageLocalMultiplayer gameStageLoc,int i) {
+
+    public int playerNumber;
+
+
+
+    Snake(int x, int y, GameStage gameStage,GameStageLocalMultiplayer gameStageLoc,int i, int pNumb) {
         skin = i;
         this.gameStage = gameStage;
         gameStageL = gameStageLoc;
@@ -40,13 +45,15 @@ public class Snake extends Actor {
 
         SnakePart sn;
 
+        playerNumber = pNumb;
+
      if(gameStage != null) {
-         sn = new SnakePart(true, this, true, false);
+         sn = new SnakePart(true, this, true, false, playerNumber);
          gameStage.addObject(sn, x, y);
          snakeParts.add(sn);
      }
      else if(gameStageL != null){
-         sn = new SnakePart(true, this, false, true);
+         sn = new SnakePart(true, this, false, true, playerNumber);
          gameStageL.addObject(sn,x,y);
          snakeParts.add(sn);
      }
@@ -79,12 +86,12 @@ public class Snake extends Actor {
 
         SnakePart sn;
         if(gameStage != null) {
-            sn = new SnakePart(false, this, true, false);
+            sn = new SnakePart(false, this, true, false, playerNumber);
             gameStage.addObject(sn, copyX, copyY);
             snakeParts.add(sn);
         }
         else if(gameStageL !=null){
-            sn = new SnakePart(false, this, false, true);
+            sn = new SnakePart(false, this, false, true, playerNumber);
             gameStageL.addObject(sn,copyX,copyY);
             snakeParts.add(sn);
         }
