@@ -92,8 +92,12 @@ public class GameStageLocalMultiplayer extends World
 
     public void removePlayer(Actor removeDis){
     	this.removeObject(removeDis);
-    	playerCount--;
+    	System.out.println(playerCount);
 
+    	if(playerCount >=2) {
+			playerCount = playerCount - 1;
+			System.out.println(playerCount);
+		}
 	}
 
 	@Override
@@ -133,9 +137,9 @@ public class GameStageLocalMultiplayer extends World
 
 
 			//end condition
-			if(playerCount<= 1){
+			if(playerCount== 1){
 
-				Snake winningS = (Snake)getObjects(Snake.class).get(0);
+				Snake winningS = (Snake)this.getObjects(Snake.class).get(0);
 				if(winningS.playerNumber == 1){
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
 				}

@@ -26,6 +26,7 @@ public class Wall extends Actor
         else if(isLocal){
             this.localMultGameStage = (GameStageLocalMultiplayer)getWorld();
         }
+
     }
 
     @Override
@@ -37,10 +38,8 @@ public class Wall extends Actor
                 Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep, 0));
             }
             else if(isLocal){
-
-                this.localMultGameStage = (GameStageLocalMultiplayer)getWorld();
+                this.localMultGameStage = (GameStageLocalMultiplayer) getWorld();
                 localMultGameStage.removePlayer(this.getOneIntersectingObject(SnakePart.class).snake);
-
 
 
             }
