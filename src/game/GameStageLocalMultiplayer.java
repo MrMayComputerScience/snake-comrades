@@ -62,14 +62,11 @@ public class GameStageLocalMultiplayer extends World
 		addObject(keyCounter,50,65);
 		addObject(keep,50,80);
 
-		//Spawn in walls
-		for (int i = 0; i < 30; i++) {
-			for (int k = 0; k < 40; k++) {
-				if(i == 0 || i == 29 || k == 0 || k == 39) {
-					addObject(new Wall(false, true), k*20, i*20);
-				}
-			}
-		}
+		//Spawn in the map
+		if(Main.map == null)
+			Main.map = MapReader.maps.get(0); //Basic Map
+
+		Main.map.build(this);
 	}
 
     public void tick()

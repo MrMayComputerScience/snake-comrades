@@ -8,21 +8,14 @@ public class Wall extends Actor
     public GameStage gameStage;
     public GameStageLocalMultiplayer localMultGameStage;
 
-    public boolean isSingle;
-    public boolean isLocal;
-
-
-    public Wall(boolean single, boolean local) {
-
-        isSingle = single;
-        isLocal = local;
+    public Wall() {
 
         setImage("img/wall.jpg");
 
-        if(isSingle) {
+        if(Main.gameMode == GameMode.SINGLEPLAYER) {
             this.gameStage = (GameStage) getWorld();
         }
-        else if(isLocal){
+        else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER){
             this.localMultGameStage = (GameStageLocalMultiplayer)getWorld();
         }
     }
@@ -30,11 +23,11 @@ public class Wall extends Actor
     @Override
     public void act() {
         if(this.isTouching(SnakePart.class)) {
-            if(isSingle) {
+            if(Main.gameMode == GameMode.SINGLEPLAYER) {
                 this.gameStage = (GameStage) getWorld();
                 Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep));
             }
-            else if(isLocal){
+            else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER){
                 this.localMultGameStage = (GameStageLocalMultiplayer) getWorld();
                 Mayflower.setWorld(new GameOver(localMultGameStage.scoreBoard, localMultGameStage.keyCounter, localMultGameStage.skin, localMultGameStage.keep));
 
