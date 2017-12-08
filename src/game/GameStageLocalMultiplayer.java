@@ -34,6 +34,10 @@ public class GameStageLocalMultiplayer extends World
 
 	private String direction1 = "";
 	private String direction2 = "";
+	private String direction3 = "";
+	private String direction4 = "";
+
+
 
 	Collectable startingCollectable;
 	public KeyCounter keyCounter;
@@ -165,6 +169,23 @@ public class GameStageLocalMultiplayer extends World
 				movedThisTick = true;
 			}
 
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_T)) && !direction1.equals("S")) {
+				direction3 = ("N");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_F) && !direction1.equals("E")) {
+				direction3 = ("W");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_G) && !direction1.equals("N")) {
+				direction3 = ("S");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_H) && !direction1.equals("W")) {
+				direction3 = ("E");
+				movedThisTick = true;
+			}
+
+
+
+
 
 
 			//end condition
@@ -182,29 +203,8 @@ public class GameStageLocalMultiplayer extends World
 				else if(!dead4){
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
 				}
-				//Commenting out for testing.
-
-				/*
-				System.out.println("The player count when ending game. " + playerCount);
-
-				Snake winningS = this.getObjects(Snake.class).get(0);
-
-				if(winningS.playerNumber == 1){
-					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
-				}
-				else if(winningS.playerNumber == 2){
-					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 2));
-				}
-				else if(winningS.playerNumber == 3){
-					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 3));
-				}
-				else if(winningS.playerNumber == 4){
-					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
-				}
-				*/
-
-
-
+				//I originally tried to get a list of Snake actors, but I would get an Index Out of Bounds Exception, so I did it
+				//this way.
 			}
 
 		}
