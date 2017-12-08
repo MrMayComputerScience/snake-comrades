@@ -14,8 +14,20 @@ public class GameStageLocalMultiplayer extends World
 {
 	public ScoreBoard scoreBoard;
 
-	private Snake player1;
-	private Snake player2;
+	//All four snakes
+	public Snake player1;
+	public boolean dead1;
+
+	public Snake player2;
+	public boolean dead2;
+
+	public Snake player3;
+	public boolean dead3;
+
+	public Snake player4;
+	public boolean dead4;
+
+
 
 	private Random rand;
 	private Timer t;
@@ -32,6 +44,7 @@ public class GameStageLocalMultiplayer extends World
 
 	//Keeps track of players.
 	int playerCount = 2;
+
 
 
 
@@ -91,13 +104,31 @@ public class GameStageLocalMultiplayer extends World
     }
 
     public void removePlayer(Actor removeDis){
-    	this.removeObject(removeDis);
+
     	System.out.println(playerCount);
 
     	if(playerCount >=2) {
+			Snake a = (Snake)removeDis;
+			int snakeNu = a.playerNumber;
+			System.out.println("Removing this snake number " +snakeNu);
+			//checking which snake is about to die.
+			if(snakeNu == 1){
+				dead1 = true;
+			}
+			else if(snakeNu == 2){
+				dead2 = true;
+			}
+			else if(snakeNu == 3){
+				dead3 = true;
+			}
+			else if(snakeNu == 4){
+				dead4 = true;
+			}
+
 			playerCount = playerCount - 1;
 			System.out.println(playerCount);
 		}
+		this.removeObject(removeDis);
 	}
 
 	@Override
@@ -139,7 +170,25 @@ public class GameStageLocalMultiplayer extends World
 			//end condition
 			if(playerCount== 1){
 
-				Snake winningS = (Snake)this.getObjects(Snake.class).get(0);
+				if(!dead1){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
+				}
+				else if(!dead2){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 2));
+				}
+				else if(!dead3){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 3));
+				}
+				else if(!dead4){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
+				}
+				//Commenting out for testing.
+
+				/*
+				System.out.println("The player count when ending game. " + playerCount);
+
+				Snake winningS = this.getObjects(Snake.class).get(0);
+
 				if(winningS.playerNumber == 1){
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
 				}
@@ -152,6 +201,10 @@ public class GameStageLocalMultiplayer extends World
 				else if(winningS.playerNumber == 4){
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
 				}
+				*/
+
+
+
 			}
 
 		}
