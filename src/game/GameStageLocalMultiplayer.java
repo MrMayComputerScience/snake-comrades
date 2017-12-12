@@ -68,6 +68,10 @@ public class GameStageLocalMultiplayer extends World
 		//Trying to add another player. This one is mapped to the arrow keys.
 		player2 = new Snake(180,180,null,this,skin, 2);
 
+		player3 = new Snake(220,180,null,this,skin,3);
+		player4 = new Snake(280,180,null, this,skin,4);
+
+
 		startingCollectable	= new Collectable(player1, false, true);
 		addObject(player1,100,100);
 
@@ -183,6 +187,19 @@ public class GameStageLocalMultiplayer extends World
 				movedThisTick = true;
 			}
 
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_I)) && !direction1.equals("S")) {
+				direction4 = ("N");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_J) && !direction1.equals("E")) {
+				direction4 = ("W");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_K) && !direction1.equals("N")) {
+				direction4 = ("S");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_L) && !direction1.equals("W")) {
+				direction4 = ("E");
+				movedThisTick = true;
+			}
 
 
 
