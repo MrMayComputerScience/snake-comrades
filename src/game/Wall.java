@@ -12,7 +12,7 @@ public class Wall extends Actor
 
     public Wall() {
 
-        setImage("img/wall.jpg");
+        setImage("img/wall.png");
 
         if(Main.gameMode == GameMode.SINGLEPLAYER) {
             this.gameStage = (GameStage) getWorld();
