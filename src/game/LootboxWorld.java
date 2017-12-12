@@ -19,7 +19,7 @@ public class LootboxWorld  extends World
     private int score;
     private int skin;
     private Random rand;
-
+    private PlayButton musicCrate;
 
 
 
@@ -37,6 +37,8 @@ public class LootboxWorld  extends World
         oof.setImage("img/casescreen.png");
         l = new PlayButton();
         l.setImage("img/opencrate.png");
+        musicCrate = new PlayButton();
+        musicCrate.setImage("img/opencrate.png");
         addObject(p, 600, 400);
         s = a;
         score = s.getScore();
@@ -52,6 +54,7 @@ public class LootboxWorld  extends World
         addObject(b,171,293);
         addObject(l,520,320);
         addObject(skins,150,84);
+        addObject(musicCrate,520,351);
 
     }
     @Override
@@ -129,6 +132,162 @@ public class LootboxWorld  extends World
                 skin = 10;
                 skins.setImage("img/snakePhoto"+skin+".png");
             }
+        }
+        else if(Mayflower.mouseClicked(musicCrate) && k.getScore()>=1)
+        {
+            k.minusScore();
+            rand = new Random();
+            int p = rand.nextInt(160);
+            p = 71;
+            System.out.println(p);
+            if(p<10)
+            {
+                StartMenu.music = "jazz";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<20)
+            {
+                StartMenu.music = "Oasis";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<30)
+            {
+                StartMenu.music = "AmericanPie";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<40)
+            {
+                StartMenu.music = "RickRoll";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<50)
+            {
+                StartMenu.music = "Kalinka";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<60)
+            {
+                StartMenu.music = "CheekiBreeki";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<70)
+            {
+                StartMenu.music = "DangerBassBoost";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<80)
+            {
+                StartMenu.music = "HeyBassBoost";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<90)
+            {
+                StartMenu.music = "ChaChaSlideBassBoost";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<100)
+            {
+                StartMenu.music = "MansNotHotBassBoosted";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<110)
+            {
+                StartMenu.music = "OceanMan";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<=120)
+            {
+                StartMenu.music = "MansNotHot";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<=130)
+            {
+                StartMenu.music = "Rasputin";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<=140)
+            {
+                StartMenu.music = "GetLow";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<=150)
+            {
+                StartMenu.music = "TheDistance";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+            else if(p<=160)
+            {
+                StartMenu.music = "Yeah";
+                StartMenu.currentSong.stop();
+                StartMenu.currentSong = new MayflowerMusic("audio/"+ StartMenu.music +".wav");
+                StartMenu.currentSong.play();
+                StartMenu.currentSong.setVolume(1);
+                System.out.println(StartMenu.music);
+            }
+
+
+
+
         }
         else if(Mayflower.mouseClicked(b) && s.getScore()>=249)
         {

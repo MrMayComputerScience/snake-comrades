@@ -17,10 +17,12 @@ public class StartMenu extends World
 	private int score;
 	private int keys;
 	private int skin;
-	private MayflowerMusic jazz;
+	public static MayflowerMusic currentSong;
+	public static String music;
 
     public StartMenu()
     {
+    	music = "jazz";
     	skin = 0;
     	score = 0;
     	keys = 0;
@@ -42,9 +44,9 @@ public class StartMenu extends World
     	addObject(lootboxes, 233, 414);
     	addObject(quit, 403, 414);
 
-		jazz = new MayflowerMusic("img/jazz.wav");
-		jazz.play();
-		jazz.setVolume(1);
+		currentSong = new MayflowerMusic("audio/jazz.wav");
+		currentSong.play();
+		currentSong.setVolume(1);
 	}
 
     public StartMenu(ScoreBoard a, KeyCounter j,int i)
