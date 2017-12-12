@@ -16,10 +16,8 @@ public class GameOver extends World {
     public GameOver(ScoreBoard scoreBoard, KeyCounter j,int i,CurrentRun m, int pNumb) {
 
         playerNumb = pNumb;
-        if(playerNumb == 1){
-            setBackground("img/winP1.png");
-        }
-       else if(playerNumb ==2){
+
+        if(playerNumb ==2){
             setBackground("img/winP2.png");
         }
         else if(playerNumb ==3){
@@ -27,7 +25,10 @@ public class GameOver extends World {
         }
         else if(playerNumb ==4){
             setBackground("img/winP4.png");
+        } else {
+            setBackground("img/winP1.png");
         }
+
         skin = i;
         l = new StringActor("You got " + m.getScore() + " points!");
         addObject(l, 400, 300);

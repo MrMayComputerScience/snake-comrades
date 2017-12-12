@@ -14,6 +14,7 @@ public class StartMenu extends World
 	private KeyCounter k;
 	private LongMenuButton singleplayer, localMulti, netMulti;
 	private ShortMenuButton lootboxes, quit;
+	private MapChooseButton mapChooser;
 	private int score;
 	private int keys;
 	private int skin;
@@ -35,19 +36,21 @@ public class StartMenu extends World
     	netMulti = new LongMenuButton();
     	lootboxes = new ShortMenuButton();
     	quit = new ShortMenuButton();
+    	mapChooser = new MapChooseButton();
 
     	addObject(singleplayer, 233, 246);
     	addObject(localMulti, 233, 246+48);
     	addObject(netMulti, 233, 246+48*2);
     	addObject(lootboxes, 233, 414);
     	addObject(quit, 403, 414);
+    	addObject(mapChooser, 233, 514);
 
 		jazz = new MayflowerMusic("img/jazz.wav");
 		jazz.play();
 		jazz.setVolume(1);
 	}
 
-    public StartMenu(ScoreBoard a, KeyCounter j,int i)
+    public StartMenu(ScoreBoard a, KeyCounter j, int i)
 	{
 		setBackground("img/titlescreen_minecraft.png");
 		skin = i;
@@ -63,12 +66,14 @@ public class StartMenu extends World
 		netMulti = new LongMenuButton();
 		lootboxes = new ShortMenuButton();
 		quit = new ShortMenuButton();
+		mapChooser = new MapChooseButton();
 
 		addObject(singleplayer, 233, 246);
 		addObject(localMulti, 233, 246+48);
 		addObject(netMulti, 233, 246+48*2);
 		addObject(lootboxes, 233, 414);
 		addObject(quit, 403, 414);
+		addObject(mapChooser, 233, 514);
     }
 
     @Override
@@ -91,6 +96,7 @@ public class StartMenu extends World
 		if(Mayflower.mouseClicked(quit)) {
 			Mayflower.exit();
 		}
+
 		if (Mayflower.isKeyDown(Keyboard.KEY_GRAVE))
 		{
 			s.addKeyScore();
