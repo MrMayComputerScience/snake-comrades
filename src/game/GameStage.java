@@ -31,16 +31,14 @@ public class GameStage extends World
     {
     	setBackground("img/background.gif");
     	matrix=new BackgroundImage();
+    	Main.gameMode = GameMode.SINGLEPLAYER;
     	skin=f;
     	keep = new CurrentRun();
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 
-
 		player1 = new Snake(100,100, this,null,skin, 1);
-
-
 
 		startingCollectable	= new Collectable(player1,true, false);
 		addObject(player1,100,100);
@@ -60,17 +58,11 @@ public class GameStage extends World
 		addObject(keyCounter,50,65);
 		addObject(keep,50,80);
 
-		//Spawn in walls
-		for (int i = 0; i < 30; i++) {
-			for (int k = 0; k < 40; k++) {
-				if(i == 0 || i == 29 || k == 0 || k == 39) {
-					addObject(new Wall(true, false), k*20, i*20);
-				}
-			}
-		}
+		//Spawn map
+		if(Main.map == null)
+			Main.map = MapReader.maps.get(0); //Basic Map
 
-		//Spawn in portal
-
+		Main.map.build(this);
 	}
 
     public void tick()
@@ -78,7 +70,6 @@ public class GameStage extends World
     	if(!direction1.equals("")) {
 			player1.move(direction1);
 		}
-
     }
 
 	@Override
