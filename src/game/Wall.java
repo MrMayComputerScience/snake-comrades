@@ -26,6 +26,7 @@ public class Wall extends Actor
     @Override
     public void act() {
         if(this.isTouching(SnakePart.class)) {
+            System.out.println("Touching a snake right now.");
             if(Main.gameMode == GameMode.SINGLEPLAYER) {
                 this.gameStage = (GameStage) getWorld();
                 Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep, 0));
