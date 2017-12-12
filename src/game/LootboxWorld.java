@@ -20,6 +20,7 @@ public class LootboxWorld  extends World
     private int skin;
     private Random rand;
     private PlayButton musicCrate;
+    private PlayButton collectableB;
 
 
 
@@ -37,6 +38,8 @@ public class LootboxWorld  extends World
         oof.setImage("img/casescreen.png");
         l = new PlayButton();
         l.setImage("img/opencrate.png");
+        collectableB = new PlayButton();
+        collectableB.setImage("img/opencrate.png");
         musicCrate = new PlayButton();
         musicCrate.setImage("img/opencrate.png");
         addObject(p, 600, 400);
@@ -48,6 +51,7 @@ public class LootboxWorld  extends World
         addObject(paypal, -25, 400);
         k=j;
         q = new CurrentSkin();
+
         addObject(q,50,80);
         addObject(k, 50,65);
         addObject(oof,100,100);
@@ -55,6 +59,7 @@ public class LootboxWorld  extends World
         addObject(l,520,320);
         addObject(skins,150,84);
         addObject(musicCrate,520,351);
+        addObject(collectableB,520,382);
 
     }
     @Override
@@ -138,7 +143,6 @@ public class LootboxWorld  extends World
             k.minusScore();
             rand = new Random();
             int p = rand.nextInt(160);
-            p = 71;
             System.out.println(p);
             if(p<10)
             {
@@ -288,6 +292,28 @@ public class LootboxWorld  extends World
 
 
 
+        }
+        else if(Mayflower.mouseClicked(collectableB)&&k.getScore()>=1)
+        {
+            k.minusScore();
+            rand = new Random();
+            int p = rand.nextInt(100);
+            if(p <10)
+            {
+                StartMenu.collectableSkin = 0;
+            }
+            else if(p<20)
+            {
+                StartMenu.collectableSkin = 1;
+            }
+            else if(p<30)
+            {
+                StartMenu.collectableSkin = 2;
+            }
+            else if(p<40)
+            {
+                StartMenu.collectableSkin = 3;
+            }
         }
         else if(Mayflower.mouseClicked(b) && s.getScore()>=249)
         {

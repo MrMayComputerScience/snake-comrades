@@ -19,7 +19,7 @@ public class Wall extends Actor
         isSingle = single;
         isLocal = local;
 
-        setImage("img/wall.jpg");
+        setImage("img/wall.png");
 
         if(isSingle) {
             this.gameStage = (GameStage) getWorld();

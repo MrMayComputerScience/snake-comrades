@@ -17,7 +17,7 @@ public class Collectable extends Actor{
 
     public Collectable(Snake a, boolean single, boolean local){
         snake = a;
-        setImage("img/shekle.png");
+        setImage("img/Collectable"+StartMenu.collectableSkin+".png");
 
         isSingle = single;
         isLocal = local;

@@ -19,9 +19,11 @@ public class StartMenu extends World
 	private int skin;
 	public static MayflowerMusic currentSong;
 	public static String music;
+	public static int collectableSkin;
 
     public StartMenu()
     {
+    	collectableSkin=0;
     	music = "jazz";
     	skin = 0;
     	score = 0;
