@@ -36,7 +36,7 @@ public class GameStage extends World
 		rand = new Random();
 
 
-		player1 = new Snake(100,100, this,null,skin);
+		player1 = new Snake(100,100, this,null,skin, 1);
 
 
 

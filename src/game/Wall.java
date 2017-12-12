@@ -3,6 +3,8 @@ package game;
 import mayflower.Actor;
 import mayflower.Mayflower;
 
+import java.util.List;
+
 public class Wall extends Actor
 {
     public GameStage gameStage;
@@ -18,6 +20,7 @@ public class Wall extends Actor
         else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER){
             this.localMultGameStage = (GameStageLocalMultiplayer)getWorld();
         }
+
     }
 
     @Override
@@ -25,11 +28,12 @@ public class Wall extends Actor
         if(this.isTouching(SnakePart.class)) {
             if(Main.gameMode == GameMode.SINGLEPLAYER) {
                 this.gameStage = (GameStage) getWorld();
-                Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep));
+                Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep, 0));
             }
             else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER){
                 this.localMultGameStage = (GameStageLocalMultiplayer) getWorld();
-                Mayflower.setWorld(new GameOver(localMultGameStage.scoreBoard, localMultGameStage.keyCounter, localMultGameStage.skin, localMultGameStage.keep));
+                localMultGameStage.removePlayer(this.getOneIntersectingObject(SnakePart.class).snake);
+
 
             }
 

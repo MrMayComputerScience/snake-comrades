@@ -1,5 +1,6 @@
 package game;
 
+import mayflower.Actor;
 import mayflower.Keyboard;
 import mayflower.Mayflower;
 import mayflower.World;
@@ -13,14 +14,29 @@ public class GameStageLocalMultiplayer extends World
 {
 	public ScoreBoard scoreBoard;
 
-	private Snake player1;
-	private Snake player2;
+	//All four snakes
+	public Snake player1;
+	public boolean dead1;
+
+	public Snake player2;
+	public boolean dead2;
+
+	public Snake player3;
+	public boolean dead3;
+
+	public Snake player4;
+	public boolean dead4;
+
+
 
 	private Random rand;
 	private Timer t;
 
 	private String direction1 = "";
 	private String direction2 = "";
+	private String direction3 = "";
+	private String direction4 = "";
+
 
 
 	Collectable startingCollectable;
@@ -28,6 +44,14 @@ public class GameStageLocalMultiplayer extends World
 	private boolean movedThisTick;
 	public int skin;
 	public CurrentRun keep;
+
+
+	//Keeps track of players.
+	int playerCount = 2;
+
+
+
+
 
     public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f)
     {
@@ -39,10 +63,10 @@ public class GameStageLocalMultiplayer extends World
 		rand = new Random();
 
 
-		player1 = new Snake(100,100,null, this,skin);
+		player1 = new Snake(100,100,null, this,skin, 1);
 
 		//Trying to add another player. This one is mapped to the arrow keys.
-		player2 = new Snake(180,180,null,this,skin);
+		player2 = new Snake(180,180,null,this,skin, 2);
 
 		startingCollectable	= new Collectable(player1, false, true);
 		addObject(player1,100,100);
@@ -79,26 +103,38 @@ public class GameStageLocalMultiplayer extends World
 		}
     }
 
+    public void removePlayer(Actor removeDis){
+
+    	System.out.println(playerCount);
+
+    	if(playerCount >=2) {
+			Snake a = (Snake)removeDis;
+			int snakeNu = a.playerNumber;
+			System.out.println("Removing this snake number " +snakeNu);
+			//checking which snake is about to die.
+			if(snakeNu == 1){
+				dead1 = true;
+			}
+			else if(snakeNu == 2){
+				dead2 = true;
+			}
+			else if(snakeNu == 3){
+				dead3 = true;
+			}
+			else if(snakeNu == 4){
+				dead4 = true;
+			}
+
+			playerCount = playerCount - 1;
+			System.out.println(playerCount);
+		}
+		this.removeObject(removeDis);
+	}
+
 	@Override
 	public void act() {
     	if(!movedThisTick) {
 
-    		//Commenting out to keep old work in the case that the new code breaks the program.
-    		/*
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_W) || Mayflower.isKeyPressed(Keyboard.KEY_UP)) && !direction1.equals("S")) {
-				direction1 = ("N");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A) || Mayflower.isKeyPressed(Keyboard.KEY_LEFT)) && !direction1.equals("E")) {
-				direction1 = ("W");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S) || Mayflower.isKeyPressed(Keyboard.KEY_DOWN)) && !direction1.equals("N")) {
-				direction1 = ("S");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) || Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)) && !direction1.equals("W")) {
-				direction1 = ("E");
-				movedThisTick = true;
-			}
-		*/
 
 			if ((Mayflower.isKeyPressed(Keyboard.KEY_W)&& !direction1.equals("S"))) {
 				direction1 = ("N");
@@ -129,7 +165,43 @@ public class GameStageLocalMultiplayer extends World
 				movedThisTick = true;
 			}
 
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_T)) && !direction1.equals("S")) {
+				direction3 = ("N");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_F) && !direction1.equals("E")) {
+				direction3 = ("W");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_G) && !direction1.equals("N")) {
+				direction3 = ("S");
+				movedThisTick = true;
+			} else if (Mayflower.isKeyPressed(Keyboard.KEY_H) && !direction1.equals("W")) {
+				direction3 = ("E");
+				movedThisTick = true;
+			}
 
+
+
+
+
+
+			//end condition
+			if(playerCount== 1){
+
+				if(!dead1){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
+				}
+				else if(!dead2){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 2));
+				}
+				else if(!dead3){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 3));
+				}
+				else if(!dead4){
+					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
+				}
+				//I originally tried to get a list of Snake actors, but I would get an Index Out of Bounds Exception, so I did it
+				//this way.
+			}
 
 		}
 	}
@@ -177,26 +249,7 @@ public class GameStageLocalMultiplayer extends World
 		else{
 			addCollectable();
 		}
-		//Commenting out to see if recursive works because its more efficent.
-		/*
-		else{
-	//		if this happens, we add a collectable to 120x120 if the snake is not there. If the snake is there, we add it to the bottom right.
-			boolean cantPlace2 = false;
-			check2:
-			for(int i = 0; i <player1.snakeLocationX.size(); i++)
-			{
-				if(120 == player1.snakeLocationX.get(i))
-				{
-					if(120 == player1.snakeLocationY.get(i)) {
-						cantPlace2 = true;
-						break check2;
-					}
-				}
-			}
-			if(!cantPlace2){
-				this.addObject(a,120,120);
-			}
-		}\*/
+
 
 	}
 
