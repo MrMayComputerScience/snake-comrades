@@ -28,6 +28,8 @@ public class GameStage extends World
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
     {
+    	Main.gameMode = GameMode.SINGLEPLAYER;
+
     	setBackground("img/black.jpg");
     	skin=f;
     	keep = new CurrentRun();
@@ -35,10 +37,7 @@ public class GameStage extends World
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 
-
 		player1 = new Snake(100,100, this,null,skin, 1);
-
-
 
 		startingCollectable	= new Collectable(player1,true, false);
 		addObject(player1,100,100);
@@ -59,7 +58,10 @@ public class GameStage extends World
 		addObject(keep,50,80);
 
 		//Spawn map
+		if(Main.map == null)
+			Main.map = MapReader.maps.get(0); //Basic Map
 
+		Main.map.build(this);
 	}
 
     public void tick()

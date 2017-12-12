@@ -20,7 +20,7 @@ public class Map {
 
                 if(array[r][c] == 1) {
                     System.out.println("Adding a wall.");
-                    world.addObject(new Wall(), r * 20, c * 20);
+                    world.addObject(new Wall(), c * 20, r * 20);
                 }
             }
         }

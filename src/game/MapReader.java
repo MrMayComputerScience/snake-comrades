@@ -19,7 +19,7 @@ public class MapReader {
             String name = s.nextLine().trim();
             int[][] array = new int[30][40];
 
-            for (int i = 1; i < 30; i++) {
+            for (int i = 0; i < 30; i++) {
                 String line = s.nextLine().trim();
                 String[] parts = line.split(",");
                 int[] partsint = new int[parts.length];

@@ -27,8 +27,6 @@ public class GameStageLocalMultiplayer extends World
 	public Snake player4;
 	public boolean dead4;
 
-
-
 	private Random rand;
 	private Timer t;
 
@@ -37,31 +35,25 @@ public class GameStageLocalMultiplayer extends World
 	private String direction3 = "";
 	private String direction4 = "";
 
-
-
 	Collectable startingCollectable;
 	public KeyCounter keyCounter;
 	private boolean movedThisTick;
 	public int skin;
 	public CurrentRun keep;
 
-
 	//Keeps track of players.
 	int playerCount = 2;
 
-
-
-
-
     public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f)
     {
+    	Main.gameMode = GameMode.LOCAL_MULTIPLAYER;
+
     	setBackground("img/black.jpg");
     	skin=f;
     	keep = new CurrentRun();
     	this.scoreBoard = scoreBoard;
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
-
 
 		player1 = new Snake(100,100,null, this,skin, 1);
 

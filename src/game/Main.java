@@ -10,8 +10,6 @@ public class Main extends Mayflower
     private Main()
     {
         super("Snake 2D", 800, 600);
-
-
     }
 
     @Override
