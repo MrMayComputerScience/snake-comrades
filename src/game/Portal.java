@@ -35,9 +35,8 @@ public class Portal extends Actor {
             int x = oppPortal.getX();
             int y = oppPortal.getY();
 
-            //if(snake)
-
-            snake.move(x + 20, y);
+            //todo fix
+            snake.move(x, y);
         }
     }
 

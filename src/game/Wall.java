@@ -18,7 +18,7 @@ public class Wall extends Actor
             this.gameStage = (GameStage) getWorld();
         }
         else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER){
-            this.localMultGameStage = (GameStageLocalMultiplayer)getWorld();
+            this.localMultGameStage = (GameStageLocalMultiplayer) getWorld();
         }
 
     }

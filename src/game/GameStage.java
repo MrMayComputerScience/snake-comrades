@@ -2,6 +2,8 @@ package game;
 
 import java.util.Random;
 import mayflower.*;
+import org.lwjgl.Sys;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,6 +17,7 @@ public class GameStage extends World
 
 	private Random rand;
 	private Timer t;
+	private long time0, time1;
 
 	private String direction1 = "";
 	private String direction2 = "";
@@ -44,14 +47,14 @@ public class GameStage extends World
 
 		//Adding collectable
 		addObject(startingCollectable,160,160);
+
 		t = new Timer();
 		t.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				tick();
-				movedThisTick = false;
+				stick();
 			}
-		}, 75, 75);
+		}, 75);
 
 		keyCounter =j;
 		addObject(keyCounter,50,65);
@@ -62,6 +65,34 @@ public class GameStage extends World
 			Main.map = MapReader.maps.get(0); //Basic Map
 
 		Main.map.build(this);
+	}
+
+	public void stick() {
+		tick();
+		movedThisTick = false;
+
+		if(time0 == 0 || time1 == 0) {
+			time0 = System.currentTimeMillis();
+			time1 = System.currentTimeMillis();
+		}
+
+		time0 = time1;
+		time1 = System.currentTimeMillis();
+
+		long diff = Math.abs(time1 - time0);
+		long exce = diff - 75;
+
+		if(diff > 75) {
+			System.out.println("DIFFERENCE OF " + diff + " EXCEEDS 75");
+			System.out.println("NEXT TICK WILL EXECUTE IN " + exce + " MILLIS");
+		}
+
+		t.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				stick();
+			}
+		}, exce > 1000 || exce < 1 ? 75 : 75 - exce);
 	}
 
     public void tick()
