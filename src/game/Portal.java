@@ -3,6 +3,8 @@ package game;
 import lombok.Getter;
 import lombok.val;
 import mayflower.Actor;
+import mayflower.MayflowerImage;
+import org.lwjgl.Sys;
 
 import javax.sound.sampled.Port;
 
@@ -17,6 +19,8 @@ public class Portal extends Actor {
     public Portal(Color color) {
 
         this.color = color;
+
+        setImage(color.getImage());
     }
 
     @Override
@@ -25,17 +29,24 @@ public class Portal extends Actor {
         Color oppColor = color.getOpposite();
         Portal oppPortal = getWorld().getObjects(Portal.class).stream().filter(n -> n != null && n.getColor() == oppColor).findFirst().get();
 
-        if(isTouching(Snake.class)) {
-            Snake snake = getOneIntersectingObject(Snake.class);
-            snake.move(oppPortal.getX(), oppPortal.getY());
+        if(this.isTouching(SnakePart.class)) {
+            SnakePart snake = getOneIntersectingObject(SnakePart.class);
+
+            int x = oppPortal.getX();
+            int y = oppPortal.getY();
+
+            //if(snake)
+
+            snake.move(x + 20, y);
         }
     }
 
     enum Color {
-        RED,
-        BLUE;
+        RED("img/portal0.png"),
+        BLUE("img/portal1.png");
 
         private Color opposite;
+        private String image;
 
         static {
             RED.opposite = BLUE;
@@ -44,6 +55,14 @@ public class Portal extends Actor {
 
         public Color getOpposite() {
             return opposite;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        Color(String image) {
+            this.image = image;
         }
     }
 }

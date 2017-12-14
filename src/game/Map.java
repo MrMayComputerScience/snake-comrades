@@ -18,11 +18,22 @@ public class Map {
         for (int r = 0; r < 30; r++) {
             for (int c = 0; c < 40; c++) {
 
-                if(array[r][c] == 1) {
-                    System.out.println("Adding a wall.");
-                    world.addObject(new Wall(), c * 20, r * 20);
+                int i = array[r][c];
+                int x = c * 20;
+                int y = r * 20;
+
+                if(i == 1) {
+                    world.addObject(new Wall(), x, y);
+                } else if(i == 2) {
+                    world.addObject(new Portal(Portal.Color.BLUE), x, y);
+                } else if(i == 3) {
+                    world.addObject(new Portal(Portal.Color.RED), x, y);
                 }
             }
         }
+    }
+
+    public void isOpenSpace(World world, int c, int r) {
+
     }
 }

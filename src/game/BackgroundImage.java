@@ -9,17 +9,21 @@ public class BackgroundImage
     private ArrayList<MayflowerImage> images;
     public BackgroundImage()
     {
+        System.out.println("loop!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         images= new ArrayList();
+        images.add(new MayflowerImage("img/black.png"));
         for(int i = 0;i<79;i++)
         {
             images.add(new MayflowerImage("img/Background/frame_"+i+"_delay-0.04s.png"));
         }
 
+
+
     }
     public void nextImage(GameStage current)
     {
         current.setBackground(images.get(currentImage));
-        if(currentImage==78)
+        if(currentImage==images.size()-1)
             currentImage=0;
         else currentImage++;
     }

@@ -13,32 +13,23 @@ public class SnakePart extends Actor
 
     public Snake snake;
 
-    private boolean isSingle;
-    private boolean isLocal;
-
    public int playerNumb;
 
-    public SnakePart(boolean head, Snake a, boolean single, boolean local, int pNumb)
+    public SnakePart(boolean head, Snake a, int pNumb)
     {
         snake = a;
 
-        if(single) {
+        if(Main.gameMode == GameMode.SINGLEPLAYER) {
             this.gameStage = (GameStage) getWorld();
         }
-        else if(local){
+        else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER){
             this.gameStageL = (GameStageLocalMultiplayer) getWorld();
         }
 
         setImage("img/snakePhoto"+ snake.skin +".png");
         isFront = head;
 
-        isSingle = single;
-        isLocal = local;
-
-      playerNumb = pNumb;
-
-
-
+        playerNumb = pNumb;
     }
 
     public void move(int x, int y) {
@@ -59,24 +50,18 @@ public class SnakePart extends Actor
             }
         }
 
-        if(isLocal) {
-            if (this.getIntersectingObjects(SnakePart.class).size() > 1 && !snake.currentlyCopied)  {
-                gameStageL.removePlayer(this.snake);
-              /*  this.gameStageL = (GameStageLocalMultiplayer) getWorld();
+        if(Main.gameMode == GameMode.SINGLEPLAYER) {
+            if (this.getIntersectingObjects(SnakePart.class).size() > 1 && !snake.currentlyCopied) {
+                this.gameStageL = (GameStageLocalMultiplayer) getWorld();
                 Mayflower.setWorld(new GameOver(gameStageL.scoreBoard, gameStageL.keyCounter, gameStageL.skin, gameStageL.keep, playerNumb));
-            */
             }
             if (snake.isOne) {
                 if (this.getIntersectingObjects(SnakePart.class).size() > 0 && !snake.currentlyCopied) {
                     ((GameStageLocalMultiplayer)this.getWorld()).removePlayer(snake);
-                    /*
-                    this.gameStageL = (GameStageLocalMultiplayer) getWorld();
-                    Mayflower.setWorld(new GameOver(gameStageL.scoreBoard, gameStageL.keyCounter, gameStageL.skin, gameStageL.keep, playerNumb));
-                */
                 }
             }
         }
-        if(isSingle) {
+        if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER) {
             if (this.getIntersectingObjects(SnakePart.class).size() > 1 && !snake.currentlyCopied) {
                 this.gameStage = (GameStage) getWorld();
                 Mayflower.setWorld(new GameOver(gameStage.scoreBoard, gameStage.keyCounter, gameStage.skin, gameStage.keep, playerNumb));

@@ -21,10 +21,12 @@ public class StartMenu extends World
 	public static MayflowerMusic currentSong;
 	public static String music;
 	public static int collectableSkin;
+	public static BackgroundImage matrix;
 
     public StartMenu()
     {
     	collectableSkin=0;
+		matrix = new BackgroundImage();
     	music = "jazz";
     	skin = 0;
     	score = 0;

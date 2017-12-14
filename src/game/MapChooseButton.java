@@ -15,7 +15,11 @@ public class MapChooseButton extends Actor {
         }
 
         setImage("img/button.png");
-        setMap(0);
+
+        if(Main.map == null)
+            setMap(0);
+        else
+            setMap(Main.map);
     }
 
     private void setMap(int i) {
@@ -24,9 +28,13 @@ public class MapChooseButton extends Actor {
 
         index = i;
 
-        Main.map = MapReader.maps.get(index);
+        setMap(MapReader.maps.get(index));
+    }
 
-        setImage(new MayflowerImage("Map - " + Main.map.name, 24, new Color(255,255,255)));
+    private void setMap(Map map) {
+        Main.map = map;
+
+        setImage(new MayflowerImage("Map - " + map.name, 24, new Color(255,255,255)));
     }
 
     @Override

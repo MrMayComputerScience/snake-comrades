@@ -34,10 +34,7 @@ public class Wall extends Actor
             else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER){
                 this.localMultGameStage = (GameStageLocalMultiplayer) getWorld();
                 localMultGameStage.removePlayer(this.getOneIntersectingObject(SnakePart.class).snake);
-
-
             }
-
         }
     }
 }
