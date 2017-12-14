@@ -41,6 +41,15 @@ public class GameStageLocalMultiplayer extends World
 	public int skin;
 	public CurrentRun keep;
 
+	//started and ready booleans.
+	private boolean startedGame = false;
+
+	private boolean ready1;
+	private boolean ready2;
+	private boolean ready3;
+	private boolean ready4;
+
+
 	//Keeps track of players.
 	int playerCount = 4;
 
@@ -170,9 +179,12 @@ public class GameStageLocalMultiplayer extends World
 
 	@Override
 	public void act() {
-    	if(!movedThisTick) {
 
-    		if(!dead1) {
+	if(startedGame) {
+
+		if (!movedThisTick) {
+
+			if (!dead1) {
 				//player1
 				if ((Mayflower.isKeyPressed(Keyboard.KEY_W) && !direction1.equals("S"))) {
 					direction1 = ("N");
@@ -189,7 +201,7 @@ public class GameStageLocalMultiplayer extends World
 				}
 			}
 			//player2
-			if(!dead2) {
+			if (!dead2) {
 				if ((Mayflower.isKeyPressed(Keyboard.KEY_UP) && !direction2.equals("S"))) {
 					direction2 = ("N");
 					movedThisTick = true;
@@ -205,7 +217,7 @@ public class GameStageLocalMultiplayer extends World
 				}
 			}
 			//player3
-			if(!dead3) {
+			if (!dead3) {
 				if ((Mayflower.isKeyPressed(Keyboard.KEY_T)) && !direction3.equals("S")) {
 					direction3 = ("N");
 					movedThisTick = true;
@@ -221,7 +233,7 @@ public class GameStageLocalMultiplayer extends World
 				}
 			}
 			//player4
-			if(dead4) {
+			if (dead4) {
 				if ((Mayflower.isKeyPressed(Keyboard.KEY_I)) && !direction4.equals("S")) {
 					direction4 = ("N");
 					movedThisTick = true;
@@ -237,18 +249,15 @@ public class GameStageLocalMultiplayer extends World
 				}
 			}
 			//end condition
-			if(playerCount== 1){
+			if (playerCount == 1) {
 
-				if(!dead1){
+				if (!dead1) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
-				}
-				else if(!dead2){
+				} else if (!dead2) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 2));
-				}
-				else if(!dead3){
+				} else if (!dead3) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 3));
-				}
-				else if(!dead4){
+				} else if (!dead4) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
 				}
 				//I originally tried to get a list of Snake actors, but I would get an Index Out of Bounds Exception, so I did it
@@ -256,6 +265,27 @@ public class GameStageLocalMultiplayer extends World
 			}
 
 		}
+
+	}
+	if(!startedGame) {
+		//setting ready.
+		if (Mayflower.isKeyPressed(Keyboard.KEY_W)) {
+			ready1 = true;
+		}
+		if (Mayflower.isKeyPressed(Keyboard.KEY_T)) {
+			ready3 = true;
+		}
+		if (Mayflower.isKeyPressed(Keyboard.KEY_I)) {
+			ready4 = true;
+		}
+		if (Mayflower.isKeyPressed(Keyboard.KEY_UP)) {
+			ready2 = true;
+		}
+		if (ready1 && ready2 && ready3 && ready4) {
+			startedGame = true;
+		}
+	}
+
 	}
 
 	public void addCollectable(){
