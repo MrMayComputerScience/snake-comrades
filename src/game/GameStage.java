@@ -38,9 +38,9 @@ public class GameStage extends World
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 
-		player1 = new Snake(100,100, this,null,skin, 1);
+		player1 = new Snake(40,40, this,null,skin, 1);
 
-		startingCollectable	= new Collectable(player1,true, false);
+		startingCollectable	= new Collectable(player1);
 		addObject(player1,100,100);
 
 		//Adding collectable
@@ -132,7 +132,7 @@ public class GameStage extends World
 	}
 
 	public void addCollectable(){
-		Collectable a = new Collectable(player1, true, false);
+		Collectable a = new Collectable(player1);
 		Random rand = new Random();
 		int x = rand.nextInt(780)+20;
 		int y = rand.nextInt(580)+20;

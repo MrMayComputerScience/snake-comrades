@@ -48,12 +48,12 @@ public class Snake extends Actor {
         playerNumber = pNumb;
 
      if(gameStage != null) {
-         sn = new SnakePart(true, this, true, false, playerNumber);
+         sn = new SnakePart(true, this, playerNumber);
          gameStage.addObject(sn, x, y);
          snakeParts.add(sn);
      }
      else if(gameStageL != null){
-         sn = new SnakePart(true, this, false, true, playerNumber);
+         sn = new SnakePart(true, this, playerNumber);
          gameStageL.addObject(sn,x,y);
          snakeParts.add(sn);
      }
@@ -86,12 +86,12 @@ public class Snake extends Actor {
 
         SnakePart sn;
         if(gameStage != null) {
-            sn = new SnakePart(false, this, true, false, playerNumber);
+            sn = new SnakePart(false, this, playerNumber);
             gameStage.addObject(sn, copyX, copyY);
             snakeParts.add(sn);
         }
         else if(gameStageL !=null){
-            sn = new SnakePart(false, this, false, true, playerNumber);
+            sn = new SnakePart(false, this, playerNumber);
             gameStageL.addObject(sn,copyX,copyY);
             snakeParts.add(sn);
         }

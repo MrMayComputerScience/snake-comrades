@@ -11,17 +11,10 @@ public class Collectable extends Actor{
 
     public Snake snake;
 
-
-    private boolean isSingle;
-    private boolean isLocal;
-
-    public Collectable(Snake a, boolean single, boolean local){
+    public Collectable(Snake a){
         snake = a;
+
         setImage("img/Collectable"+StartMenu.collectableSkin+".png");
-
-        isSingle = single;
-        isLocal = local;
-
     }
 
     @Override
@@ -31,22 +24,19 @@ public class Collectable extends Actor{
             //Finds the snake from the SnakePart it just intersected.
             snake = this.getOneIntersectingObject(SnakePart.class).snake;
 
-//Use booleans to determine if I need to cast as a gamestage or localgmultiplayergamestage.
-
-            if(isSingle) {
+            //Use booleans to determine if I need to cast as a gamestage or localgmultiplayergamestage.
+            if(Main.gameMode == GameMode.SINGLEPLAYER) {
                 GameStage gag = (GameStage) this.getWorld();
-
 
                 snake.increaseSnakeSize();
                 gag.addCollectable();
                 gag.scoreBoard.plusScore();
                 gag.keep.plusScore();
                 this.getWorld().removeObject(this);
-
             }
-            else if(isLocal){
+            else if(Main.gameMode == GameMode.LOCAL_MULTIPLAYER)
+            {
                 GameStageLocalMultiplayer gagLocal = (GameStageLocalMultiplayer) this.getWorld();
-
 
                 snake.increaseSnakeSize();
                 gagLocal.addCollectable();

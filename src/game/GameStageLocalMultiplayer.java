@@ -56,30 +56,23 @@ public class GameStageLocalMultiplayer extends World
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 
-		player1 = new Snake(40,40,null, this,skin, 1);
+		player1 = new Snake(100,100,null, this,skin, 1);
 
 		//Trying to add another player. This one is mapped to the arrow keys.
 		player2 = new Snake(760,40,null,this,skin, 2);
-
-
 		player3 = new Snake(40, 560, null, this, skin, 3);
-		//	addObject(player3, 220,180);
-
-
 		player4 = new Snake(760,560,null, this,skin,4);
-		//	addObject(player4, 280,180);
 
-
-		startingCollectable	= new Collectable(player1, false, true);
+		startingCollectable	= new Collectable(player1);
 		addObject(player1,20,20);
 		addObject(player2, 760,40);
 		addObject(player3, 40,560);
 		addObject(player4, 760,560);
 
-
-
 		//Adding collectable
 		addObject(startingCollectable,160,160);
+
+		//Setting timer
 		t = new Timer();
 		t.schedule(new TimerTask() {
 			@Override
@@ -234,7 +227,7 @@ public class GameStageLocalMultiplayer extends World
 	}
 
 	public void addCollectable(){
-		Collectable a = new Collectable(player1, false, true);
+		Collectable a = new Collectable(player1);
 		Random rand = new Random();
 		int x = rand.nextInt(780)+20;
 		int y = rand.nextInt(580)+20;
