@@ -41,13 +41,22 @@ public class GameStageLocalMultiplayer extends World
 	public int skin;
 	public CurrentRun keep;
 
+	//started and ready booleans.
+	private boolean startedGame = false;
+
+	private boolean ready1;
+	private boolean ready2;
+	private boolean ready3;
+	private boolean ready4;
+
+
 	//Keeps track of players.
 	int playerCount = 4;
 
-    public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f)
+    public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f, int pCount)
     {
     	Main.gameMode = GameMode.LOCAL_MULTIPLAYER;
-
+			playerCount = pCount;
 
     	setBackground("img/black.jpg");
     	skin=f;
@@ -56,18 +65,38 @@ public class GameStageLocalMultiplayer extends World
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 
-		player1 = new Snake(100,100,null, this,skin, 1);
 
-		//Trying to add another player. This one is mapped to the arrow keys.
-		player2 = new Snake(760,40,null,this,skin, 2);
-		player3 = new Snake(40, 560, null, this, skin, 3);
-		player4 = new Snake(760,560,null, this,skin,4);
+		player1 = new Snake(40, 40, null, this, skin, 1);
+		if(playerCount >=2) {
+			player2 = new Snake(760,40,null,this,skin, 2);
+		}
+		if(playerCount>=3) {
+			player3 = new Snake(40, 560, null, this, skin, 3);
+		}
+		if(playerCount ==4) {
+			player4 = new Snake(760, 560, null, this, skin, 4);
+
+		}
+
+
+		addObject(player1,20,20);
+		if(playerCount>=2) {
+			addObject(player2, 760, 40);
+		}
+		if(playerCount >=3) {
+			addObject(player3, 40, 560);
+		}
+		if(playerCount == 4) {
+			addObject(player4, 760, 560);
+		}
+
 
 		startingCollectable	= new Collectable(player1);
 		addObject(player1,20,20);
 		addObject(player2, 760,40);
 		addObject(player3, 40,560);
 		addObject(player4, 760,560);
+
 
 		//Adding collectable
 		addObject(startingCollectable,160,160);
@@ -95,17 +124,25 @@ public class GameStageLocalMultiplayer extends World
 
     public void tick()
     {
-    	if(!direction1.equals("")) {
-			player1.move(direction1);
+    	if(!dead1) {
+			if (!direction1.equals("")) {
+				player1.move(direction1);
+			}
 		}
-		if(!direction2.equals("")){
-    		player2.move(direction2);
+		if(!dead2) {
+			if (!direction2.equals("")) {
+				player2.move(direction2);
+			}
 		}
-		if(!direction3.equals("")){
-			player3.move(direction3);
+		if(!dead3) {
+			if (!direction3.equals("")) {
+				player3.move(direction3);
+			}
 		}
-		if(!direction4.equals("")){
-			player4.move(direction4);
+		if(!dead4) {
+			if (!direction4.equals("")) {
+				player4.move(direction4);
+			}
 		}
     }
 
@@ -142,81 +179,85 @@ public class GameStageLocalMultiplayer extends World
 
 	@Override
 	public void act() {
-    	if(!movedThisTick) {
 
-			//player1
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_W)&& !direction1.equals("S"))) {
-				direction1 = ("N");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A)  && !direction1.equals("E"))) {
-				direction1 = ("W");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S)  && !direction1.equals("N"))) {
-				direction1 = ("S");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D)  && !direction1.equals("W"))) {
-				direction1 = ("E");
-				movedThisTick = true;
+	if(startedGame) {
+
+		if (!movedThisTick) {
+
+			if (!dead1) {
+				//player1
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_W) && !direction1.equals("S"))) {
+					direction1 = ("N");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A) && !direction1.equals("E"))) {
+					direction1 = ("W");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S) && !direction1.equals("N"))) {
+					direction1 = ("S");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) && !direction1.equals("W"))) {
+					direction1 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//player2
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_UP)&& !direction1.equals("S"))) {
-				direction2 = ("N");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_LEFT)  && !direction1.equals("E"))) {
-				direction2 = ("W");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_DOWN)  && !direction1.equals("N"))) {
-				direction2 = ("S");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)  && !direction1.equals("W"))) {
-				direction2 = ("E");
-				movedThisTick = true;
+			if (!dead2) {
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_UP) && !direction2.equals("S"))) {
+					direction2 = ("N");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_LEFT) && !direction2.equals("E"))) {
+					direction2 = ("W");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_DOWN) && !direction2.equals("N"))) {
+					direction2 = ("S");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_RIGHT) && !direction2.equals("W"))) {
+					direction2 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//player3
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_T)) && !direction3.equals("S")) {
-				direction3 = ("N");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_F) && !direction3.equals("E")) {
-				direction3 = ("W");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_G) && !direction3.equals("N")) {
-				direction3 = ("S");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_H) && !direction3.equals("W")) {
-				direction3 = ("E");
-				movedThisTick = true;
+			if (!dead3) {
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_T)) && !direction3.equals("S")) {
+					direction3 = ("N");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_F) && !direction3.equals("E")) {
+					direction3 = ("W");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_G) && !direction3.equals("N")) {
+					direction3 = ("S");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_H) && !direction3.equals("W")) {
+					direction3 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//player4
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_I)) && !direction4.equals("S")) {
-				direction4 = ("N");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_J) && !direction4.equals("E")) {
-				direction4 = ("W");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_K) && !direction4.equals("N")) {
-				direction4 = ("S");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_L) && !direction4.equals("W")) {
-				direction4 = ("E");
-				movedThisTick = true;
+			if (dead4) {
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_I)) && !direction4.equals("S")) {
+					direction4 = ("N");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_J) && !direction4.equals("E")) {
+					direction4 = ("W");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_K) && !direction4.equals("N")) {
+					direction4 = ("S");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_L) && !direction4.equals("W")) {
+					direction4 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//end condition
-			if(playerCount== 1){
+			if (playerCount == 1) {
 
-				if(!dead1){
+				if (!dead1) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 1));
-				}
-				else if(!dead2){
+				} else if (!dead2) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 2));
-				}
-				else if(!dead3){
+				} else if (!dead3) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 3));
-				}
-				else if(!dead4){
+				} else if (!dead4) {
 					Mayflower.setWorld(new GameOver(this.scoreBoard, this.keyCounter, this.skin, this.keep, 4));
 				}
 				//I originally tried to get a list of Snake actors, but I would get an Index Out of Bounds Exception, so I did it
@@ -224,6 +265,27 @@ public class GameStageLocalMultiplayer extends World
 			}
 
 		}
+
+	}
+	if(!startedGame) {
+		//setting ready.
+		if (Mayflower.isKeyPressed(Keyboard.KEY_W)) {
+			ready1 = true;
+		}
+		if (Mayflower.isKeyPressed(Keyboard.KEY_T)) {
+			ready3 = true;
+		}
+		if (Mayflower.isKeyPressed(Keyboard.KEY_I)) {
+			ready4 = true;
+		}
+		if (Mayflower.isKeyPressed(Keyboard.KEY_UP)) {
+			ready2 = true;
+		}
+		if (ready1 && ready2 && ready3 && ready4) {
+			startedGame = true;
+		}
+	}
+
 	}
 
 	public void addCollectable(){
