@@ -69,7 +69,7 @@ public class GameStageLocalMultiplayer extends World
 
 		}
 
-	
+
 		addObject(player1,20,20);
 		if(playerCount>=2) {
 			addObject(player2, 760, 40);
@@ -172,66 +172,70 @@ public class GameStageLocalMultiplayer extends World
 	public void act() {
     	if(!movedThisTick) {
 
-			//player1
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_W)&& !direction1.equals("S"))) {
-				direction1 = ("N");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A)  && !direction1.equals("E"))) {
-				direction1 = ("W");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S)  && !direction1.equals("N"))) {
-				direction1 = ("S");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D)  && !direction1.equals("W"))) {
-				direction1 = ("E");
-				movedThisTick = true;
+    		if(!dead1) {
+				//player1
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_W) && !direction1.equals("S"))) {
+					direction1 = ("N");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_A) && !direction1.equals("E"))) {
+					direction1 = ("W");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_S) && !direction1.equals("N"))) {
+					direction1 = ("S");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_D) && !direction1.equals("W"))) {
+					direction1 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//player2
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_UP)&& !direction2.equals("S"))) {
-				direction2 = ("N");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_LEFT)  && !direction2.equals("E"))) {
-				direction2 = ("W");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_DOWN)  && !direction2.equals("N"))) {
-				direction2 = ("S");
-				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)  && !direction2.equals("W"))) {
-				direction2 = ("E");
-				movedThisTick = true;
+			if(!dead2) {
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_UP) && !direction2.equals("S"))) {
+					direction2 = ("N");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_LEFT) && !direction2.equals("E"))) {
+					direction2 = ("W");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_DOWN) && !direction2.equals("N"))) {
+					direction2 = ("S");
+					movedThisTick = true;
+				} else if ((Mayflower.isKeyPressed(Keyboard.KEY_RIGHT) && !direction2.equals("W"))) {
+					direction2 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//player3
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_T)) && !direction3.equals("S")) {
-				direction3 = ("N");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_F) && !direction3.equals("E")) {
-				direction3 = ("W");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_G) && !direction3.equals("N")) {
-				direction3 = ("S");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_H) && !direction3.equals("W")) {
-				direction3 = ("E");
-				movedThisTick = true;
+			if(!dead3) {
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_T)) && !direction3.equals("S")) {
+					direction3 = ("N");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_F) && !direction3.equals("E")) {
+					direction3 = ("W");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_G) && !direction3.equals("N")) {
+					direction3 = ("S");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_H) && !direction3.equals("W")) {
+					direction3 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//player4
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_I)) && !direction4.equals("S")) {
-				direction4 = ("N");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_J) && !direction4.equals("E")) {
-				direction4 = ("W");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_K) && !direction4.equals("N")) {
-				direction4 = ("S");
-				movedThisTick = true;
-			} else if (Mayflower.isKeyPressed(Keyboard.KEY_L) && !direction4.equals("W")) {
-				direction4 = ("E");
-				movedThisTick = true;
+			if(dead4) {
+				if ((Mayflower.isKeyPressed(Keyboard.KEY_I)) && !direction4.equals("S")) {
+					direction4 = ("N");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_J) && !direction4.equals("E")) {
+					direction4 = ("W");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_K) && !direction4.equals("N")) {
+					direction4 = ("S");
+					movedThisTick = true;
+				} else if (Mayflower.isKeyPressed(Keyboard.KEY_L) && !direction4.equals("W")) {
+					direction4 = ("E");
+					movedThisTick = true;
+				}
 			}
-
 			//end condition
 			if(playerCount== 1){
 
