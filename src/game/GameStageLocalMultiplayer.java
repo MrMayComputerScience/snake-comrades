@@ -56,7 +56,7 @@ public class GameStageLocalMultiplayer extends World
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 
-<<<<<<< HEAD
+
 		player1 = new Snake(40, 40, null, this, skin, 1);
 		if(playerCount >=2) {
 			player2 = new Snake(760,40,null,this,skin, 2);
@@ -69,7 +69,7 @@ public class GameStageLocalMultiplayer extends World
 
 		}
 
-		startingCollectable	= new Collectable(player1, false, true);
+	
 		addObject(player1,20,20);
 		if(playerCount>=2) {
 			addObject(player2, 760, 40);
@@ -81,20 +81,13 @@ public class GameStageLocalMultiplayer extends World
 			addObject(player4, 760, 560);
 		}
 
-=======
-		player1 = new Snake(100,100,null, this,skin, 1);
-
-		//Trying to add another player. This one is mapped to the arrow keys.
-		player2 = new Snake(760,40,null,this,skin, 2);
-		player3 = new Snake(40, 560, null, this, skin, 3);
-		player4 = new Snake(760,560,null, this,skin,4);
 
 		startingCollectable	= new Collectable(player1);
 		addObject(player1,20,20);
 		addObject(player2, 760,40);
 		addObject(player3, 40,560);
 		addObject(player4, 760,560);
->>>>>>> 6cf27b2cb33a983698af8b17bc1de0f8b2fa6f7e
+
 
 		//Adding collectable
 		addObject(startingCollectable,160,160);
