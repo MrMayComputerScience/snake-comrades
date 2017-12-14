@@ -21,6 +21,8 @@ public class LootboxWorld  extends World
     private Random rand;
     private PlayButton musicCrate;
     private PlayButton collectableB;
+    private CollectableDisplay currentC;
+    private PlayButton currentCl;
 
 
 
@@ -42,6 +44,9 @@ public class LootboxWorld  extends World
         collectableB.setImage("img/opencrate.png");
         musicCrate = new PlayButton();
         musicCrate.setImage("img/opencrate.png");
+        currentCl = new PlayButton();
+        currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
+        currentC = new CollectableDisplay();
         addObject(p, 600, 400);
         s = a;
         score = s.getScore();
@@ -58,6 +63,8 @@ public class LootboxWorld  extends World
         addObject(b,171,293);
         addObject(l,520,320);
         addObject(skins,150,84);
+        addObject(currentC,175,80);
+        addObject(currentCl,320,84);
         addObject(musicCrate,520,351);
         addObject(collectableB,520,382);
 
@@ -301,18 +308,22 @@ public class LootboxWorld  extends World
             if(p <10)
             {
                 StartMenu.collectableSkin = 0;
+                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
             }
             else if(p<20)
             {
                 StartMenu.collectableSkin = 1;
+                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
             }
             else if(p<30)
             {
                 StartMenu.collectableSkin = 2;
+                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
             }
             else if(p<40)
             {
                 StartMenu.collectableSkin = 3;
+                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
             }
         }
         else if(Mayflower.mouseClicked(b) && s.getScore()>=249)

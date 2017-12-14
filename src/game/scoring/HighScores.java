@@ -1,7 +1,5 @@
 package game.scoring;
 
-import lombok.Getter;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +57,16 @@ public class HighScores {
 
 class Entry {
 
-    @Getter String initials;
-    @Getter long score;
+    String initials;
+    long score;
+
+    public String getInitials() {
+        return initials;
+    }
+
+    public long getScore() {
+        return score;
+    }
 
     public Entry(String initials, long score) {
         this.initials = initials;
