@@ -25,12 +25,11 @@ public class GameStage extends World
 	private boolean movedThisTick;
 	public int skin;
 	public CurrentRun keep;
-	public BackgroundImage matrix;
 
     public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
     {
-    	setBackground("img/background.gif");
-    	matrix=new BackgroundImage();
+    	setBackground("img/black.png");
+
     	Main.gameMode = GameMode.SINGLEPLAYER;
     	skin=f;
     	keep = new CurrentRun();
@@ -74,7 +73,7 @@ public class GameStage extends World
 
 	@Override
 	public void act() {
-    	matrix.nextImage(this);
+    	StartMenu.matrix.nextImage(this);
 
 		System.out.println("Objects: " + getObjects().size());
 
