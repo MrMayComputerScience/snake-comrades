@@ -1,7 +1,6 @@
 package game;
 
-import lombok.Getter;
-import lombok.val;
+
 import mayflower.Actor;
 import mayflower.MayflowerImage;
 import org.lwjgl.Sys;
