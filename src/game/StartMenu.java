@@ -88,8 +88,8 @@ public class StartMenu extends World
 			Mayflower.setWorld(nextWorld);
 		}
 		if(Mayflower.mouseClicked(localMulti)){
-			GameStageLocalMultiplayer gameStageLM = new GameStageLocalMultiplayer(s,k,skin);
-			Mayflower.setWorld(gameStageLM);
+			HowManyPlayersSelect h = new HowManyPlayersSelect(s,k,skin);
+			Mayflower.setWorld(h);
 		}
 
 		if(Mayflower.mouseClicked(lootboxes)) {

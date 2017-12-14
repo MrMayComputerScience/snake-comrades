@@ -44,10 +44,10 @@ public class GameStageLocalMultiplayer extends World
 	//Keeps track of players.
 	int playerCount = 4;
 
-    public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f)
+    public GameStageLocalMultiplayer(ScoreBoard scoreBoard, KeyCounter j, int f, int pCount)
     {
     	Main.gameMode = GameMode.LOCAL_MULTIPLAYER;
-
+			playerCount = pCount;
 
     	setBackground("img/black.jpg");
     	skin=f;
@@ -56,26 +56,29 @@ public class GameStageLocalMultiplayer extends World
 		addObject(this.scoreBoard, 50,50);
 		rand = new Random();
 
-		player1 = new Snake(40,40,null, this,skin, 1);
+		player1 = new Snake(40, 40, null, this, skin, 1);
+		if(playerCount >=2) {
+			player2 = new Snake(760,40,null,this,skin, 2);
+		}
+		if(playerCount>=3) {
+			player3 = new Snake(40, 560, null, this, skin, 3);
+		}
+		if(playerCount ==4) {
+			player4 = new Snake(760, 560, null, this, skin, 4);
 
-		//Trying to add another player. This one is mapped to the arrow keys.
-		player2 = new Snake(760,40,null,this,skin, 2);
-
-
-		player3 = new Snake(40, 560, null, this, skin, 3);
-		//	addObject(player3, 220,180);
-
-
-		player4 = new Snake(760,560,null, this,skin,4);
-		//	addObject(player4, 280,180);
-
+		}
 
 		startingCollectable	= new Collectable(player1, false, true);
 		addObject(player1,20,20);
-		addObject(player2, 760,40);
-		addObject(player3, 40,560);
-		addObject(player4, 760,560);
-
+		if(playerCount>=2) {
+			addObject(player2, 760, 40);
+		}
+		if(playerCount >=3) {
+			addObject(player3, 40, 560);
+		}
+		if(playerCount == 4) {
+			addObject(player4, 760, 560);
+		}
 
 
 		//Adding collectable
@@ -102,17 +105,25 @@ public class GameStageLocalMultiplayer extends World
 
     public void tick()
     {
-    	if(!direction1.equals("")) {
-			player1.move(direction1);
+    	if(!dead1) {
+			if (!direction1.equals("")) {
+				player1.move(direction1);
+			}
 		}
-		if(!direction2.equals("")){
-    		player2.move(direction2);
+		if(!dead2) {
+			if (!direction2.equals("")) {
+				player2.move(direction2);
+			}
 		}
-		if(!direction3.equals("")){
-			player3.move(direction3);
+		if(!dead3) {
+			if (!direction3.equals("")) {
+				player3.move(direction3);
+			}
 		}
-		if(!direction4.equals("")){
-			player4.move(direction4);
+		if(!dead4) {
+			if (!direction4.equals("")) {
+				player4.move(direction4);
+			}
 		}
     }
 
@@ -167,16 +178,16 @@ public class GameStageLocalMultiplayer extends World
 			}
 
 			//player2
-			if ((Mayflower.isKeyPressed(Keyboard.KEY_UP)&& !direction1.equals("S"))) {
+			if ((Mayflower.isKeyPressed(Keyboard.KEY_UP)&& !direction2.equals("S"))) {
 				direction2 = ("N");
 				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_LEFT)  && !direction1.equals("E"))) {
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_LEFT)  && !direction2.equals("E"))) {
 				direction2 = ("W");
 				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_DOWN)  && !direction1.equals("N"))) {
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_DOWN)  && !direction2.equals("N"))) {
 				direction2 = ("S");
 				movedThisTick = true;
-			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)  && !direction1.equals("W"))) {
+			} else if ((Mayflower.isKeyPressed(Keyboard.KEY_RIGHT)  && !direction2.equals("W"))) {
 				direction2 = ("E");
 				movedThisTick = true;
 			}
