@@ -50,26 +50,14 @@ public class SnakePart extends Actor
             }
         }
 
-<<<<<<< HEAD
         if(Main.gameMode == GameMode.SINGLEPLAYER) {
             if (this.getIntersectingObjects(SnakePart.class).size() > 1 && !snake.currentlyCopied) {
                 this.gameStageL = (GameStageLocalMultiplayer) getWorld();
-=======
-        if(isLocal) {
-            if (this.getIntersectingObjects(SnakePart.class).size() > 1 && !snake.currentlyCopied)  {
-                gameStageL.removePlayer(this.snake);
-              /*  this.gameStageL = (GameStageLocalMultiplayer) getWorld();
->>>>>>> 505743ae0df7c030807aef181dd5965bf0414f78
                 Mayflower.setWorld(new GameOver(gameStageL.scoreBoard, gameStageL.keyCounter, gameStageL.skin, gameStageL.keep, playerNumb));
-            */
             }
             if (snake.isOne) {
                 if (this.getIntersectingObjects(SnakePart.class).size() > 0 && !snake.currentlyCopied) {
                     ((GameStageLocalMultiplayer)this.getWorld()).removePlayer(snake);
-                    /*
-                    this.gameStageL = (GameStageLocalMultiplayer) getWorld();
-                    Mayflower.setWorld(new GameOver(gameStageL.scoreBoard, gameStageL.keyCounter, gameStageL.skin, gameStageL.keep, playerNumb));
-                */
                 }
             }
         }
