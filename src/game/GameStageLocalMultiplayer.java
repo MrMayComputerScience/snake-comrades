@@ -275,15 +275,25 @@ public class GameStageLocalMultiplayer extends World
 		if (Mayflower.isKeyPressed(Keyboard.KEY_T)) {
 			ready3 = true;
 		}
+
 		if (Mayflower.isKeyPressed(Keyboard.KEY_I)) {
-			ready4 = true;
+                ready4 = true;
 		}
+
+
 		if (Mayflower.isKeyPressed(Keyboard.KEY_UP)) {
-			ready2 = true;
+                ready2 = true;
 		}
-		if (ready1 && ready2 && ready3 && ready4) {
-			startedGame = true;
-		}
+
+        if(playerCount ==2 && ready1 && ready2){
+		    startedGame = true;
+        }
+        if(playerCount==3 && ready1 &&ready2 &ready3){
+		    startedGame = true;
+        }
+        if(playerCount==4 && ready1 &&ready2&&ready3&&ready4){
+		    startedGame = true;
+        }
 	}
 
 	}
