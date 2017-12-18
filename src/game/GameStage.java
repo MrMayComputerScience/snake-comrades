@@ -1,9 +1,10 @@
 package game;
 
-import java.util.Random;
-import mayflower.*;
-import org.lwjgl.Sys;
+import mayflower.Keyboard;
+import mayflower.Mayflower;
+import mayflower.World;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,7 +30,7 @@ public class GameStage extends World
 	public int skin;
 	public CurrentRun keep;
 
-    public GameStage(ScoreBoard scoreBoard, KeyCounter j,int f)
+    public GameStage(ScoreBoard scoreBoard, KeyCounter j, int f)
     {
     	setBackground("img/black.png");
 

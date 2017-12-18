@@ -18,7 +18,6 @@ public class Snake extends Actor {
 
     public GameStageLocalMultiplayer gameStageL;
 
-
     public int skin;
 
     //isOne is used for intersecting each other when at size 1.
@@ -27,12 +26,9 @@ public class Snake extends Actor {
     //tells whether a copy just occurred for the snake.
     public boolean currentlyCopied = false;
 
-
     public int playerNumber;
 
-
-
-    Snake(int x, int y, GameStage gameStage,GameStageLocalMultiplayer gameStageLoc,int i, int pNumb) {
+    Snake(int x, int y, GameStage gameStage, GameStageLocalMultiplayer gameStageLoc, int i, int pNumb) {
         skin = i;
         this.gameStage = gameStage;
         gameStageL = gameStageLoc;
@@ -47,34 +43,29 @@ public class Snake extends Actor {
 
         playerNumber = pNumb;
 
-     if(gameStage != null) {
-         sn = new SnakePart(true, this, playerNumber);
-         gameStage.addObject(sn, x, y);
-         snakeParts.add(sn);
-     }
-     else if(gameStageL != null){
-         sn = new SnakePart(true, this, playerNumber);
-         gameStageL.addObject(sn,x,y);
-         snakeParts.add(sn);
-     }
+        if (gameStage != null) {
+            sn = new SnakePart(true, this, playerNumber);
+            gameStage.addObject(sn, x, y);
+            snakeParts.add(sn);
+        } else if (gameStageL != null) {
+            sn = new SnakePart(true, this, playerNumber);
+            gameStageL.addObject(sn, x, y);
+            snakeParts.add(sn);
+        }
 
         currentlyCopied = false;
         isOne = true;
-
-
-
-
     }
 
     @Override
     public void act() {
-        if (this.isTouching(Collectable.class)){
+        if (this.isTouching(Collectable.class)) {
             increaseSnakeSize();
         }
     }
 
     public void move(int x, int y) {
-        setLocation(x,y);
+        setLocation(x, y);
     }
 
     public void increaseSnakeSize() {
@@ -85,17 +76,15 @@ public class Snake extends Actor {
         int copyY = snakeLocationY.get(snakeLocationY.size() - 1);
 
         SnakePart sn;
-        if(gameStage != null) {
+        if (gameStage != null) {
             sn = new SnakePart(false, this, playerNumber);
             gameStage.addObject(sn, copyX, copyY);
             snakeParts.add(sn);
-        }
-        else if(gameStageL !=null){
+        } else if (gameStageL != null) {
             sn = new SnakePart(false, this, playerNumber);
-            gameStageL.addObject(sn,copyX,copyY);
+            gameStageL.addObject(sn, copyX, copyY);
             snakeParts.add(sn);
         }
-
 
         snakeLocationX.add(copyX);
         snakeLocationY.add(copyY);
@@ -103,47 +92,41 @@ public class Snake extends Actor {
     }
 
     //Given a direction (N, E, S, W), this method moves the snake depending on if another snake unit was added.
-    public void move(String direction){
+    public void move(String direction) {
 
         //Condition for if the snake has just been copied.
-        if(currentlyCopied){
-            if(Objects.equals(direction, "N")) {
+        if (currentlyCopied) {
+            if (Objects.equals(direction, "N")) {
                 snakeLocationY.set(snakeLocationY.size() - 1, snakeLocationY.get(snakeLocationY.size() - 1) - 20);
-            }
-            else if(Objects.equals(direction, "E")) {
+            } else if (Objects.equals(direction, "E")) {
                 snakeLocationX.set(snakeLocationX.size() - 1, snakeLocationX.get(snakeLocationX.size() - 1) + 20);
-            }
-            else if(Objects.equals(direction, "S")) {
+            } else if (Objects.equals(direction, "S")) {
                 snakeLocationY.set(snakeLocationY.size() - 1, snakeLocationY.get(snakeLocationY.size() - 1) + 20);
-            }
-            else if(Objects.equals(direction, "W")){
+            } else if (Objects.equals(direction, "W")) {
                 snakeLocationX.set(snakeLocationX.size() - 1, snakeLocationX.get(snakeLocationX.size() - 1) - 20);
             }
             currentlyCopied = false;
         }
 
         //A regular move.
-        else{
-            if(Objects.equals(direction, "N")){
+        else {
+            if (Objects.equals(direction, "N")) {
                 snakeLocationY.set(snakeLocationY.size() - 1, snakeLocationY.get(snakeLocationY.size() - 1) - 20);
-            }
-            else if(Objects.equals(direction, "E")){
+            } else if (Objects.equals(direction, "E")) {
                 snakeLocationX.set(snakeLocationX.size() - 1, snakeLocationX.get(snakeLocationX.size() - 1) + 20);
-            }
-            else if(Objects.equals(direction, "S")){
+            } else if (Objects.equals(direction, "S")) {
                 snakeLocationY.set(snakeLocationY.size() - 1, snakeLocationY.get(snakeLocationY.size() - 1) + 20);
-            }
-            else if(Objects.equals(direction, "W")){
+            } else if (Objects.equals(direction, "W")) {
                 snakeLocationX.set(snakeLocationX.size() - 1, snakeLocationX.get(snakeLocationX.size() - 1) - 20);
             }
         }
 
         //Uses the length of X because both arrays should be the same length.
-        for(int i = 0; i < snakeLocationX.size() - 1; i++){
+        for (int i = 0; i < snakeLocationX.size() - 1; i++) {
             //replaces every x value except the last with its superior.
-            snakeLocationX.set(i, snakeLocationX.get(i+1));
+            snakeLocationX.set(i, snakeLocationX.get(i + 1));
             //replaces every y value except the last with its superior.
-            snakeLocationY.set(i, snakeLocationY.get(i+1));
+            snakeLocationY.set(i, snakeLocationY.get(i + 1));
         }
 
         for (int i = 0; i < snakeParts.size(); i++) {
@@ -152,11 +135,10 @@ public class Snake extends Actor {
     }
 
 
-    public void addC(){
-        if(gameStage != null) {
+    public void addC() {
+        if (gameStage != null) {
             gameStage.addCollectable();
-        }
-        else{
+        } else {
             gameStageL.addCollectable();
         }
     }
