@@ -14,7 +14,7 @@ public class CurrentRun extends Actor
     public CurrentRun()
     {
         score = 0;
-        setImage(new MayflowerImage("Current run score: " + score, 16, new Color(0,255,0)));
+        setImage(new MayflowerImage("Last run score: " + score, 16, new Color(0,255,0)));
     }
 
     public void plusScore()
@@ -30,6 +30,6 @@ public class CurrentRun extends Actor
     @Override
     public void act()
     {
-        setImage(new MayflowerImage("Current run score: " + getScore(), 16, new Color(0,255,0)));
+        setImage(new MayflowerImage("Last run score: " + getScore(), 16, new Color(0,255,0)));
     }
 }

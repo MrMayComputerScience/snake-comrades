@@ -1,44 +1,20 @@
 package game;
-import mayflower.*;
+import game.Stages.TickingStage;
 import mayflower.Mayflower;
-import mayflower.World;
 import mayflower.test.StringActor;
 
-public class GameOver extends World {
-    private ScoreBoard s;
-    private KeyCounter k;
+public class GameOver extends TickingStage {
+
     private StringActor l;
-    private int skin;
 
-    private int playerNumb;
+    public GameOver() {
+        this(1); //Player 1 wins
+    }
 
-
-    public GameOver(ScoreBoard scoreBoard, KeyCounter j,int i,CurrentRun m, int pNumb) {
-
-        playerNumb = pNumb;
-
-        if(playerNumb ==2){
-            setBackground("img/winP2.png");
-        }
-        else if(playerNumb ==3){
-            setBackground("img/winP3.png");
-        }
-        else if(playerNumb ==4){
-            setBackground("img/winP4.png");
-        } else {
-            setBackground("img/winP1.png");
-        }
-
-        skin = i;
-        l = new StringActor("You got " + m.getScore() + " points!");
+    public GameOver(int winner) {
+        setBackground("img/winP" + winner + ".png");
+        l = new StringActor("You got " + Main.currentRun.getScore() + " points!");
         addObject(l, 400, 300);
-        s=scoreBoard;
-        k=j;
-        addObject(s,50,50);
-        addObject(k,50,65);
-
-
-
     }
 
     @Override
@@ -46,7 +22,8 @@ public class GameOver extends World {
     {
         if(Mayflower.mouseClicked(l))
         {
-            StartMenu nextWorld = new StartMenu(s,k,skin);
+            Main.currentRun = new CurrentRun();
+            StartMenu nextWorld = new StartMenu();
             Mayflower.setWorld(nextWorld);
         }
     }

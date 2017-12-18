@@ -2,5 +2,5 @@ package game.scoring;
 
 public class Scoreboard2 {
 
-    //public static
+    //public static int score
 }

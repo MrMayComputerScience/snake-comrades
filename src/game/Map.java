@@ -1,7 +1,8 @@
 package game;
 
 import mayflower.World;
-import org.lwjgl.Sys;
+
+import java.util.Random;
 
 public class Map {
 
@@ -33,7 +34,15 @@ public class Map {
         }
     }
 
-    public void isOpenSpace(World world, int c, int r) {
+    public void spawnCollectable(World world) {
+        int r = 0, c = 0;
+        Random rand = new Random();
 
+        do {
+            r = rand.nextInt(30);
+            c = rand.nextInt(40);
+        } while (array[r][c] != 0);
+
+        world.addObject(new Collectable(), c * 20, r * 20);
     }
 }

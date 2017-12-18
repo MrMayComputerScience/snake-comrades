@@ -1,18 +1,8 @@
 package game;
 
-import mayflower.Actor;
-import mayflower.Keyboard;
-import mayflower.Mayflower;
-import mayflower.World;
-
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-
-
-public class GameStageLocalMultiplayer extends World
+public class GameStageLocalMultiplayer
 {
-	public ScoreBoard scoreBoard;
+	/*public ScoreBoard scoreBoard;
 
 	//All four snakes
 	public Snake player1;
@@ -341,21 +331,6 @@ public class GameStageLocalMultiplayer extends World
 		else{
 			addCollectable();
 		}
-
+*/
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}

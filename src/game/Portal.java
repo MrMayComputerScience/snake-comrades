@@ -2,10 +2,6 @@ package game;
 
 
 import mayflower.Actor;
-import mayflower.MayflowerImage;
-import org.lwjgl.Sys;
-
-import javax.sound.sampled.Port;
 
 public class Portal extends Actor {
 
@@ -23,20 +19,12 @@ public class Portal extends Actor {
     }
 
     @Override
-    public void act() {
+    public void act() { }
 
+    public Portal getOppositePortal() {
         Color oppColor = color.getOpposite();
         Portal oppPortal = getWorld().getObjects(Portal.class).stream().filter(n -> n != null && n.getColor() == oppColor).findFirst().get();
-
-        if(this.isTouching(SnakePart.class)) {
-            SnakePart snake = getOneIntersectingObject(SnakePart.class);
-
-            int x = oppPortal.getX();
-            int y = oppPortal.getY();
-
-            //todo fix
-            snake.move(x, y);
-        }
+        return oppPortal;
     }
 
     enum Color {

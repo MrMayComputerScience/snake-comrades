@@ -1,25 +1,17 @@
 package game;
 
-import java.awt.*;
-import mayflower.*;
+import game.Stages.GameStage2;
+import game.Stages.TickingStage;
+import mayflower.Mayflower;
 
-public class HowManyPlayersSelect extends World {
-
-
-    private ScoreBoard scoreboard;
-    private KeyCounter keycounter;
-    private int skin;
+public class HowManyPlayersSelect extends TickingStage {
     private LongMenuButton twoPlayers;
     private LongMenuButton threePlayers;
     private LongMenuButton fourPlayers;
 
 
-    public HowManyPlayersSelect(ScoreBoard s,KeyCounter k, int sn){
-
+    public HowManyPlayersSelect(){
         setBackground("img/localMBackground.jpg");
-        scoreboard = s;
-        keycounter = k;
-        skin = sn;
 
         twoPlayers = new LongMenuButton();
         threePlayers = new LongMenuButton();
@@ -28,29 +20,25 @@ public class HowManyPlayersSelect extends World {
         addObject(twoPlayers,250,210);
         addObject(threePlayers, 250, 246+48);
         addObject(fourPlayers, 250, 370);
-
-
-
-
     }
 
     @Override
     public void act(){
         if(Mayflower.mouseClicked(twoPlayers)){
-            GameStageLocalMultiplayer gameStageL = new GameStageLocalMultiplayer(scoreboard,keycounter,skin,2);
+            Main.players = 2;
+
+            GameStage2 gameStageL = new GameStage2();
             Mayflower.setWorld(gameStageL);
-        }
-        if(Mayflower.mouseClicked(threePlayers)){
-            GameStageLocalMultiplayer gameStageL = new GameStageLocalMultiplayer(scoreboard,keycounter,skin,3);
+        } else if(Mayflower.mouseClicked(threePlayers)){
+            Main.players = 3;
+
+            GameStage2 gameStageL = new GameStage2();
             Mayflower.setWorld(gameStageL);
-        }
-        if(Mayflower.mouseClicked(fourPlayers)){
-            GameStageLocalMultiplayer gameStageL = new GameStageLocalMultiplayer(scoreboard,keycounter,skin,4);
+        } else if(Mayflower.mouseClicked(fourPlayers)){
+            Main.players = 4;
+
+            GameStage2 gameStageL = new GameStage2();
             Mayflower.setWorld(gameStageL);
         }
     }
-
-
-
-
 }

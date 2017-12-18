@@ -11,32 +11,27 @@ public class LootboxWorld  extends World
     private PlayButton p;
     private PlayButton b;
     private PlayButton l;
-    private PlayButton oof;
     private PlayButton skins;
     private PlayButton paypal;
     private KeyCounter k;
-    private CurrentSkin q;
-    private int score;
     private int skin;
-    private Random rand;
     private PlayButton musicCrate;
     private PlayButton collectableB;
-    private CollectableDisplay currentC;
     private PlayButton currentCl;
 
 
 
-    public LootboxWorld(ScoreBoard a, KeyCounter j,int i)
+    public LootboxWorld()
     {
         setBackground("img/Background.jpg");
-        skin=i;
+        skin= Main.snakeSkin;
         skins = new PlayButton();
         skins.setImage("img/snakePhoto"+skin+".png");
         p = new PlayButton();
         p.setImage("img/back.png");
         b = new PlayButton();
         b.setImage("img/buykey.png");
-        oof = new PlayButton();
+        PlayButton oof = new PlayButton();
         oof.setImage("img/casescreen.png");
         l = new PlayButton();
         l.setImage("img/opencrate.png");
@@ -45,17 +40,17 @@ public class LootboxWorld  extends World
         musicCrate = new PlayButton();
         musicCrate.setImage("img/opencrate.png");
         currentCl = new PlayButton();
-        currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
-        currentC = new CollectableDisplay();
+        currentCl.setImage("img/Collectable"+Main.collectableSkin+".png");
+        CollectableDisplay currentC = new CollectableDisplay();
         addObject(p, 600, 400);
-        s = a;
-        score = s.getScore();
+        s = Main.scoreBoard;
+        int score = s.getScore();
         addObject(s, 50,50);
         paypal = new PlayButton();
         paypal.setImage("img/paynow.png");
         addObject(paypal, -25, 400);
-        k=j;
-        q = new CurrentSkin();
+        k= Main.keyCounter;
+        CurrentSkin q = new CurrentSkin();
 
         addObject(q,50,80);
         addObject(k, 50,65);
@@ -72,9 +67,10 @@ public class LootboxWorld  extends World
     @Override
     public void act()
     {
+        Random rand;
         if(Mayflower.mouseClicked(p))
         {
-            StartMenu nextWorld = new StartMenu(s,k,skin);
+            StartMenu nextWorld = new StartMenu();
             Mayflower.setWorld(nextWorld);
         }
         else if(Mayflower.mouseClicked(paypal)) {
@@ -144,6 +140,7 @@ public class LootboxWorld  extends World
                 skin = 10;
                 skins.setImage("img/snakePhoto"+skin+".png");
             }
+            Main.snakeSkin = skin;
         }
         else if(Mayflower.mouseClicked(musicCrate) && k.getScore()>=1)
         {
@@ -295,10 +292,6 @@ public class LootboxWorld  extends World
                 StartMenu.currentSong.setVolume(1);
                 System.out.println(StartMenu.music);
             }
-
-
-
-
         }
         else if(Mayflower.mouseClicked(collectableB)&&k.getScore()>=1)
         {
@@ -307,23 +300,23 @@ public class LootboxWorld  extends World
             int p = rand.nextInt(100);
             if(p <10)
             {
-                StartMenu.collectableSkin = 0;
-                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
+                Main.collectableSkin = 0;
+                currentCl.setImage("img/Collectable"+Main.collectableSkin+".png");
             }
             else if(p<20)
             {
-                StartMenu.collectableSkin = 1;
-                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
+                Main.collectableSkin = 1;
+                currentCl.setImage("img/Collectable"+Main.collectableSkin+".png");
             }
             else if(p<30)
             {
-                StartMenu.collectableSkin = 2;
-                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
+                Main.collectableSkin = 2;
+                currentCl.setImage("img/Collectable"+Main.collectableSkin+".png");
             }
             else if(p<40)
             {
-                StartMenu.collectableSkin = 3;
-                currentCl.setImage("img/Collectable"+StartMenu.collectableSkin+".png");
+                Main.collectableSkin = 3;
+                currentCl.setImage("img/Collectable"+Main.collectableSkin+".png");
             }
         }
         else if(Mayflower.mouseClicked(b) && s.getScore()>=249)
