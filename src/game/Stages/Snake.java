@@ -137,10 +137,11 @@ public class Snake extends TickingActor {
                     }
                 }
             }
-        }
 
-        this.setImage(img);
-        System.out.println("x=" + getX() + ",y=" + getY() + ",guid=" + (getSnakeGuid().toString().substring(0,4)));
+            //Updates
+            this.setImage(img);
+            System.out.println("x=" + getX() + ",y=" + getY() + ",guid=" + (getSnakeGuid().toString().substring(0,4)));
+        }
     }
 
     private boolean movedThisTick = false;

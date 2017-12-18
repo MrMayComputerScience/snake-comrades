@@ -14,10 +14,19 @@ public class GameStage2 extends TickingStage {
     private List<Snake> snakes;
 
     public GameStage2() {
-        setBackground("img/black.png");
+        //setBackground("img/black.png");
         snakes = new ArrayList<>();
 
         for (int i = 0; i < Main.players; i++) {
+
+            //Skip adding more than first snake for these modes.
+            if((Main.gameMode == GameMode.TWITCH_PLAYS_MULTIPLAYER
+                    || Main.gameMode == GameMode.SNAKE_MOUSE_MULTIPLAYER)
+                    && i != 0) {
+                System.out.println("Skipping adding snake for this mode " + i);
+                continue;
+            }
+
             Snake s = new Snake(ControlScheme.values()[i], UUID.randomUUID());
             snakes.add(s);
 
@@ -26,15 +35,12 @@ public class GameStage2 extends TickingStage {
                 addObject(s, 40, 40);
 
             //Snakes 2-4
-            if(Main.gameMode != GameMode.TWITCH_PLAYS_MULTIPLAYER 
-                    && Main.gameMode != GameMode.SNAKE_MOUSE_MULTIPLAYER) {
-                if (i == 1)
-                    addObject(s, 740, 40);
-                if (i == 2)
-                    addObject(s, 40, 540);
-                if (i == 3)
-                    addObject(s, 740, 540);
-            }
+            if (i == 1)
+                addObject(s, 740, 40);
+            if (i == 2)
+                addObject(s, 40, 540);
+            if (i == 3)
+                addObject(s, 740, 540);
         }
 
         Main.map.build(this);
@@ -48,7 +54,12 @@ public class GameStage2 extends TickingStage {
 
         System.out.println("Actors = " + this.getObjects().size());
 
-        if(!Main.gameMode.isMulti() && snakes.stream().allMatch(Snake::isDead)) {
+        if(Main.gameMode == GameMode.TWITCH_PLAYS_MULTIPLAYER) {
+            if(snakes.stream().allMatch(Snake::isDead)) {
+                System.out.println("Deaded");
+                Mayflower.setWorld(new GameOver());
+            }
+        } else if(!Main.gameMode.isMulti() && snakes.stream().allMatch(Snake::isDead)) {
             Mayflower.setWorld(new GameOver());
         } else if(Main.gameMode.isMulti()) {
             for (Snake s : snakes) {
