@@ -3,8 +3,10 @@ package game.Stages;
 import game.*;
 import mayflower.Keyboard;
 import mayflower.Mayflower;
+import mayflower.MayflowerImage;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Snake extends TickingActor {
@@ -14,24 +16,29 @@ public class Snake extends TickingActor {
     private Direction direction;
     private ControlScheme controlScheme;
     private int lastX, lastY;
-    private UUID uuid;
+    private UUID snakeGuid, guid;
+    private MayflowerImage img;
 
     //Create a Minion
-    public Snake(Snake following, UUID uuid) {
+    public Snake(Snake following, UUID snakeGuid) {
         this.following = following;
-        this.uuid = uuid;
-        setImage("img/snakePhoto" + Main.snakeSkin + ".png");
+        this.snakeGuid = snakeGuid;
+        this.guid = UUID.randomUUID();
+
+        img = new MayflowerImage("img/snakePhoto" + Main.snakeSkin + ".png");
     }
 
     //Create a Head
-    public Snake(ControlScheme controlScheme, UUID uuid) {
+    public Snake(ControlScheme controlScheme, UUID snakeGuid) {
         this.controlScheme = controlScheme;
-        this.uuid = uuid;
-        setImage("img/snakePhoto" + Main.snakeSkin + ".png");
+        this.snakeGuid = snakeGuid;
+        this.guid = UUID.randomUUID();
+
+        img = new MayflowerImage("img/snakePhoto" + Main.snakeSkin + ".png");
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public UUID getSnakeGuid() {
+        return snakeGuid;
     }
 
     public boolean isHead() {
@@ -66,7 +73,7 @@ public class Snake extends TickingActor {
 
     public Snake getHead() {
         for (Snake s : new ArrayList<>(getWorld().getObjects(Snake.class))) {
-            if(s.getUuid().equals(this.getUuid()) && s.isHead()) {
+            if(s.getSnakeGuid().equals(this.getSnakeGuid()) && s.isHead()) {
                 return s;
             }
         }
@@ -75,7 +82,7 @@ public class Snake extends TickingActor {
 
     public Snake getTail() {
         for (Snake s : new ArrayList<>(getWorld().getObjects(Snake.class))) {
-            if(s.getUuid().equals(this.getUuid()) && s.getFollower() == null) {
+            if(s.getSnakeGuid().equals(this.getSnakeGuid()) && s.getFollower() == null) {
                 return s;
             }
         }
@@ -131,6 +138,9 @@ public class Snake extends TickingActor {
                 }
             }
         }
+
+        this.setImage(img);
+        System.out.println("x=" + getX() + ",y=" + getY() + ",guid=" + (getSnakeGuid().toString().substring(0,4)));
     }
 
     private boolean movedThisTick = false;
@@ -143,17 +153,35 @@ public class Snake extends TickingActor {
         } else {
             if (!movedThisTick && isHead()) {
 
-                if (Mayflower.isKeyDown(controlScheme.getUp()) && direction != Direction.S) {
-                    direction = Direction.N;
-                } else if (Mayflower.isKeyDown(controlScheme.getLeft()) && direction != Direction.E) {
-                    direction = Direction.W;
-                } else if (Mayflower.isKeyDown(controlScheme.getRight()) && direction != Direction.W) {
-                    direction = Direction.E;
-                } else if (Mayflower.isKeyDown(controlScheme.getDown()) && direction != Direction.N) {
-                    direction = Direction.S;
+                if (Main.gameMode == GameMode.TWITCH_PLAYS_MULTIPLAYER) { //Twitch Control Scheme
+                    if (areAllKeysDown(Direction.N) && direction != Direction.S) {
+                        direction = Direction.N;
+                        movedThisTick = true;
+                    } else if (areAllKeysDown(Direction.N) && direction != Direction.E) {
+                        direction = Direction.W;
+                        movedThisTick = true;
+                    } else if (areAllKeysDown(Direction.N) && direction != Direction.W) {
+                        direction = Direction.E;
+                        movedThisTick = true;
+                    } else if (areAllKeysDown(Direction.N) && direction != Direction.N) {
+                        direction = Direction.S;
+                        movedThisTick = true;
+                    }
+                } else { //Default Control Scheme
+                    if (Mayflower.isKeyDown(controlScheme.getUp()) && direction != Direction.S) {
+                        direction = Direction.N;
+                        movedThisTick = true;
+                    } else if (Mayflower.isKeyDown(controlScheme.getLeft()) && direction != Direction.E) {
+                        direction = Direction.W;
+                        movedThisTick = true;
+                    } else if (Mayflower.isKeyDown(controlScheme.getRight()) && direction != Direction.W) {
+                        direction = Direction.E;
+                        movedThisTick = true;
+                    } else if (Mayflower.isKeyDown(controlScheme.getDown()) && direction != Direction.N) {
+                        direction = Direction.S;
+                        movedThisTick = true;
+                    }
                 }
-
-                movedThisTick = true;
             }
 
             if (Mayflower.isKeyPressed(Keyboard.KEY_PERIOD)) {
@@ -162,10 +190,30 @@ public class Snake extends TickingActor {
         }
     }
 
+    private boolean areAllKeysDown(Direction d) {
+        List<Direction> dirs = new ArrayList<>();
+
+        for (int i = 0; i < Main.players; i++) {
+            ControlScheme sch = ControlScheme.values()[i];
+
+            if(Mayflower.isKeyDown(sch.getUp())) dirs.add(Direction.N);
+            if(Mayflower.isKeyDown(sch.getLeft())) dirs.add(Direction.W);
+            if(Mayflower.isKeyDown(sch.getDown())) dirs.add(Direction.S);
+            if(Mayflower.isKeyDown(sch.getRight())) dirs.add(Direction.E);
+        }
+
+        if(dirs.stream().allMatch(n -> n == Direction.N) && d == Direction.N) return true;
+        if(dirs.stream().allMatch(n -> n == Direction.W) && d == Direction.W) return true;
+        if(dirs.stream().allMatch(n -> n == Direction.S) && d == Direction.S) return true;
+        if(dirs.stream().allMatch(n -> n == Direction.E) && d == Direction.E) return true;
+        return false;
+    }
+
     public void extend() {
         if(getFollower() == null) {
-            Snake newPart = new Snake(this, this.getUuid());
-            getWorld().addObject(newPart, getX(), getY());
+            Snake newPart = new Snake(this, getHead().getSnakeGuid());
+            getWorld().addObject(newPart, 0, 0);
+            System.out.println("Extend snake");
         }
     }
 
@@ -180,12 +228,12 @@ public class Snake extends TickingActor {
 
         Snake snake = (Snake) o;
 
-        return uuid.equals(snake.uuid);
+        return guid.equals(snake.guid);
     }
 
     @Override
     public int hashCode() {
-        return uuid.hashCode();
+        return snakeGuid.hashCode();
     }
 }
 

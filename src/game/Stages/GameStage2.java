@@ -1,5 +1,6 @@
 package game.Stages;
 
+import game.GameMode;
 import game.GameOver;
 import game.Main;
 import mayflower.Mayflower;
@@ -20,14 +21,20 @@ public class GameStage2 extends TickingStage {
             Snake s = new Snake(ControlScheme.values()[i], UUID.randomUUID());
             snakes.add(s);
 
+            //Snake 1
             if(i == 0)
                 addObject(s, 40, 40);
-            else if(i == 1)
-                addObject(s, 740, 40);
-            else if(i == 2)
-                addObject(s, 40, 540);
-            else if(i == 3)
-                addObject(s, 740, 540);
+
+            //Snakes 2-4
+            if(Main.gameMode != GameMode.TWITCH_PLAYS_MULTIPLAYER 
+                    && Main.gameMode != GameMode.SNAKE_MOUSE_MULTIPLAYER) {
+                if (i == 1)
+                    addObject(s, 740, 40);
+                if (i == 2)
+                    addObject(s, 40, 540);
+                if (i == 3)
+                    addObject(s, 740, 540);
+            }
         }
 
         Main.map.build(this);
@@ -46,7 +53,7 @@ public class GameStage2 extends TickingStage {
         } else if(Main.gameMode.isMulti()) {
             for (Snake s : snakes) {
                 List<Snake> others = new ArrayList<>(snakes);
-                others.removeIf(n -> n.getUuid() == s.getUuid());
+                others.removeIf(n -> n.getSnakeGuid() == s.getSnakeGuid());
 
                 if(!s.isDead() && others.stream().allMatch(Snake::isDead)) {
                     Mayflower.setWorld(new GameOver(snakes.indexOf(s) + 1));
