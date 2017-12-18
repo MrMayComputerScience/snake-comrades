@@ -204,7 +204,7 @@ public class GameStage extends World
 		else{
 			addCollectable();
 		}
-	
+
 
 	}
 
