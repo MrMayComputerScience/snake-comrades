@@ -205,26 +205,7 @@ public class GameStage extends World
 		else{
 			addCollectable();
 		}
-		//Commenting out to see if recursive works because its more efficent.
-		/*
-		else{
-	//		if this happens, we add a collectable to 120x120 if the snake is not there. If the snake is there, we add it to the bottom right.
-			boolean cantPlace2 = false;
-			check2:
-			for(int i = 0; i <player1.snakeLocationX.size(); i++)
-			{
-				if(120 == player1.snakeLocationX.get(i))
-				{
-					if(120 == player1.snakeLocationY.get(i)) {
-						cantPlace2 = true;
-						break check2;
-					}
-				}
-			}
-			if(!cantPlace2){
-				this.addObject(a,120,120);
-			}
-		}\*/
+
 
 	}
 
