@@ -19,7 +19,7 @@ public enum GameMode {
     }
 
     public String getText() {
-        return text + " " + (multi ? "MP" : "SP");
+        return text + " [" + (multi ? "MP" : "SP") + "]";
     }
 
     public boolean isMulti() {

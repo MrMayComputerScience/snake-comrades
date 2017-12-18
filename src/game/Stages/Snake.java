@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Snake extends TickingActor {
+public class Snake extends Snakesque {
 
     private Snake following;
     private boolean dead;
