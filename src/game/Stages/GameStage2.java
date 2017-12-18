@@ -3,6 +3,7 @@ package game.Stages;
 import game.GameMode;
 import game.GameOver;
 import game.Main;
+import game.StartMenu;
 import mayflower.Mayflower;
 
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ public class GameStage2 extends TickingStage {
     private List<Snake> snakes;
 
     public GameStage2() {
-        //setBackground("img/black.png");
         snakes = new ArrayList<>();
 
         for (int i = 0; i < Main.players; i++) {
@@ -23,18 +23,16 @@ public class GameStage2 extends TickingStage {
             if((Main.gameMode == GameMode.TWITCH_PLAYS_MULTIPLAYER
                     || Main.gameMode == GameMode.SNAKE_MOUSE_MULTIPLAYER)
                     && i != 0) {
-                System.out.println("Skipping adding snake for this mode " + i);
-                continue;
+                break;
             }
 
             Snake s = new Snake(ControlScheme.values()[i], UUID.randomUUID());
             snakes.add(s);
 
-            //Snake 1
+            System.out.println("Added snake " + i);
+
             if(i == 0)
                 addObject(s, 40, 40);
-
-            //Snakes 2-4
             if (i == 1)
                 addObject(s, 740, 40);
             if (i == 2)
@@ -51,11 +49,12 @@ public class GameStage2 extends TickingStage {
 
     @Override
     public void act() {
+        StartMenu.matrix.nextImage(this);
 
         System.out.println("Actors = " + this.getObjects().size());
 
         if(Main.gameMode == GameMode.TWITCH_PLAYS_MULTIPLAYER) {
-            if(snakes.stream().allMatch(Snake::isDead)) {
+            if(snakes.stream().anyMatch(Snake::isDead)) {
                 System.out.println("Deaded");
                 Mayflower.setWorld(new GameOver());
             }

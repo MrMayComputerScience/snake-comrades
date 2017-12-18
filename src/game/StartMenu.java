@@ -24,7 +24,8 @@ public class StartMenu extends TickingStage
 
     public StartMenu()
     {
-    	music = "jazz";
+    	if(music == null) music = "jazz";
+    	matrix = new BackgroundImage();
     	setBackground("img/titlescreen_minecraft.png");
 
     	singleplayer = new LongMenuButton();
@@ -43,9 +44,11 @@ public class StartMenu extends TickingStage
     	addObject(mapChooser, 233, 514);
     	addObject(modeChooser, 233, 514-48);
 
-		currentSong = new MayflowerMusic("audio/jazz.wav");
-		currentSong.play();
-		currentSong.setVolume(1);
+    	if(currentSong == null) {
+			currentSong = new MayflowerMusic("audio/jazz.wav");
+			currentSong.play();
+			currentSong.setVolume(1);
+		}
 	}
 
     @Override

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Snake extends TickingActor {
+public class Snake extends Snakesque {
 
     private Snake following;
     private boolean dead;
@@ -153,18 +153,17 @@ public class Snake extends TickingActor {
             getWorld().removeObject(this);
         } else {
             if (!movedThisTick && isHead()) {
-
                 if (Main.gameMode == GameMode.TWITCH_PLAYS_MULTIPLAYER) { //Twitch Control Scheme
                     if (areAllKeysDown(Direction.N) && direction != Direction.S) {
                         direction = Direction.N;
                         movedThisTick = true;
-                    } else if (areAllKeysDown(Direction.N) && direction != Direction.E) {
+                    } else if (areAllKeysDown(Direction.W) && direction != Direction.E) {
                         direction = Direction.W;
                         movedThisTick = true;
-                    } else if (areAllKeysDown(Direction.N) && direction != Direction.W) {
+                    } else if (areAllKeysDown(Direction.E) && direction != Direction.W) {
                         direction = Direction.E;
                         movedThisTick = true;
-                    } else if (areAllKeysDown(Direction.N) && direction != Direction.N) {
+                    } else if (areAllKeysDown(Direction.S) && direction != Direction.N) {
                         direction = Direction.S;
                         movedThisTick = true;
                     }
@@ -203,6 +202,7 @@ public class Snake extends TickingActor {
             if(Mayflower.isKeyDown(sch.getRight())) dirs.add(Direction.E);
         }
 
+        if(dirs.size() < Main.players) return false;
         if(dirs.stream().allMatch(n -> n == Direction.N) && d == Direction.N) return true;
         if(dirs.stream().allMatch(n -> n == Direction.W) && d == Direction.W) return true;
         if(dirs.stream().allMatch(n -> n == Direction.S) && d == Direction.S) return true;
