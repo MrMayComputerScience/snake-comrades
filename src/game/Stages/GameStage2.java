@@ -49,8 +49,6 @@ public class GameStage2 extends TickingStage {
 
     @Override
     public void act() {
-        StartMenu.matrix.nextImage(this);
-
         System.out.println("Actors = " + this.getObjects().size());
 
         if(Main.gameMode == GameMode.TWITCH_PLAYS_MULTIPLAYER) {

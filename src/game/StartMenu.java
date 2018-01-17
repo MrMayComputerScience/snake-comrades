@@ -25,7 +25,7 @@ public class StartMenu extends TickingStage
     public StartMenu()
     {
     	if(music == null) music = "jazz";
-    	matrix = new BackgroundImage();
+    	//matrix = new BackgroundImage();
     	setBackground("img/titlescreen_minecraft.png");
 
     	singleplayer = new LongMenuButton();
