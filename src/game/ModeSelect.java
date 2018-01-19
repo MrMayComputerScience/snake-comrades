@@ -29,7 +29,12 @@ public boolean multi;
 private boolean selected;
 
     public ModeSelect(Boolean sing, Boolean m){
-        setBackground("img/white.jpg");
+        if(sing) {
+            setBackground("img/1936OlympicsSingle.jpg");
+        }
+        else{
+            setBackground("img/1936Olympics.jpg");
+        }
         single = sing;
         multi = m;
 
@@ -45,7 +50,7 @@ private boolean selected;
             snakeMouse = new LongMenuButton();
             twitchPlays = new LongMenuButton();
             addObject(snakeMouse, 233, 346);
-            addObject(twitchPlays, 233, 546);
+            addObject(twitchPlays, 233, 446);
         }
         selected = false;
     }
