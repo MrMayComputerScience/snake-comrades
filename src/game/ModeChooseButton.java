@@ -16,7 +16,7 @@ public class ModeChooseButton extends Actor {
             setGamemode(Main.gameMode);
     }
 
-    private void setGamemode(int i) {
+    public void setGamemode(int i) {
         if(i > GameMode.values().length - 1) i = 0;
         if(i < 0) i = GameMode.values().length - 1;
 
