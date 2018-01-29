@@ -214,7 +214,6 @@ public class Snake extends Snakesque {
         if(getFollower() == null) {
             Snake newPart = new Snake(this, getHead().getSnakeGuid());
             getWorld().addObject(newPart, 0, 0);
-            System.out.println("Extend snake");
         }
     }
 
