@@ -7,11 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lombok" level="project" />
-    <orderEntry type="library" name="lombok" level="project" />
-    <orderEntry type="library" name="lombok" level="project" />
-    <orderEntry type="library" name="mayflower2.13" level="project" />
-    <orderEntry type="library" name="mayflower2.13" level="project" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="mayflower2.15" level="project" />
+    <orderEntry type="library" name="lombok" level="project" />
   </component>
 </module>
