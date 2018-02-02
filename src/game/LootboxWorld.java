@@ -297,7 +297,7 @@ public class LootboxWorld  extends World
         {
             k.minusScore();
             rand = new Random();
-            int p = rand.nextInt(100);
+            int p = rand.nextInt(40);
             if(p <10)
             {
                 Main.collectableSkin = 0;
