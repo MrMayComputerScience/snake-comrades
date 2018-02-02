@@ -6,6 +6,7 @@ public class Main extends Mayflower
 {
     public static GameMode gameMode = null;
     public static Map map = null;
+    public static SnakeClient client;
     public static int players = 1;
 
     public static int snakeSkin = 0;
@@ -22,6 +23,9 @@ public class Main extends Mayflower
     @Override
     public void init()
     {
+        client = new SnakeClient();
+        client.connect(1917);
+
         scoreBoard = new ScoreBoard();
         keyCounter = new KeyCounter();
         currentRun = new CurrentRun();
