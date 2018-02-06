@@ -35,8 +35,7 @@ public class StartMenu extends TickingStage
     	netMulti = new LongMenuButton();
     	lootboxes = new ShortMenuButton();
     	quit = new ShortMenuButton();
-   	mapChooser = new MapChooseButton();
-    //	modeChooser = new ModeChooseButton();
+   		mapChooser = new MapChooseButton();
 
     	addObject(singleplayer, 233, 246);
     	addObject(localMulti, 233, 246+48);
@@ -44,7 +43,6 @@ public class StartMenu extends TickingStage
     	addObject(lootboxes, 233, 414);
     	addObject(quit, 403, 414);
     	addObject(mapChooser, 233, 514);
-    //	addObject(modeChooser, 233, 514-48);
 
     	if(currentSong == null) {
 			currentSong = new MayflowerMusic("audio/jazz.wav");
@@ -64,24 +62,14 @@ public class StartMenu extends TickingStage
 		if(Mayflower.mouseClicked(localMulti)){
             ModeSelect a = new ModeSelect(false, true);
 			Mayflower.setWorld(a);
-            //Commented out for testing new mode selection called ModeSelect.
-			/*
-			if(Main.gameMode.isMulti()) {
-                HowManyPlayersSelect h = new HowManyPlayersSelect();
-                Mayflower.setWorld(h);
-            }
-            */
 		}
-
 		if(Mayflower.mouseClicked(lootboxes)) {
 			LootboxWorld nextWorld = new LootboxWorld();
 			Mayflower.setWorld(nextWorld);
 		}
-
 		if(Mayflower.mouseClicked(quit)) {
 			Mayflower.exit();
 		}
-
 		if (Mayflower.isKeyDown(Keyboard.KEY_GRAVE))
 		{
 			scoreBoard.addKeyScore();
